@@ -23,4 +23,15 @@ mkdir -p "$HOME/.zsh"
 git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 ```
 
-Finally, setup symlink with .zshrc file from this repo. May need to delete the one created by zsh installation. Probably best to clone the repo and do the symlink of .zshrc file before installing zsh. 
+5. Clone dotfiles repo from GitLab (if not already cloned)
+
+```console
+git clone git@gitlab.com:wespiard/dotfiles.git
+```
+
+6. Remove the default .zshrc file, and symblink to the .zshrc within the dotfiles repo. Make sure the path in 'ln' command properly points to your dotfiles repo path. 
+
+```console
+rm ~/.zshrc
+ln -s ~/git/dotfiles/.zshrc ~/.zshrc 
+```
