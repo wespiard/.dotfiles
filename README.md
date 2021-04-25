@@ -35,3 +35,9 @@ git clone git@gitlab.com:wespiard/dotfiles.git
 rm ~/.zshrc
 ln -s ~/git/dotfiles/.zshrc ~/.zshrc 
 ```
+
+7. Either source the new zshrc, or restart shell. 
+
+```console 
+source ~/.zshrc
+````
