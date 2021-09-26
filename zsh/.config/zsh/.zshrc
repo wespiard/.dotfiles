@@ -1,11 +1,13 @@
 #!/bin/sh
-export ZDOTDIR=$HOME/.config/zsh
-HISTFILE=~/.zsh_history
+
+# zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.cache/zsh/.zsh_history
 setopt appendhistory
 
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
-# setopt interactive_comments
 
 # beeping is annoying
 unsetopt BEEP
@@ -22,6 +24,8 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
+bindkey "$key[Up]" up-line-or-beginning-search
+bindkey "$key[Down]" down-line-or-beginning-search
 
 # Colors
 autoload -Uz colors && colors
@@ -31,9 +35,8 @@ source "$ZDOTDIR/zsh-functions"
 
 # Normal files to source
 zsh_add_file "zsh-exports"
-# zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
-# zsh_add_file "zsh-prompt"
+zsh_add_file "git.plugin.zsh"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
