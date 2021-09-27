@@ -1,4 +1,5 @@
 #!/bin/sh
+echo ".zshrc was loaded."
 
 # zsh_history
 HISTSIZE=10000
