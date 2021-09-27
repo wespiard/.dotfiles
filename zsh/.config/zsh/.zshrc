@@ -4,10 +4,13 @@
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/.zsh_history
-setopt appendhistory
+setopt SHARE_HISTORY
 
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
+# Disable ctrl-s to freeze terminal.
+
+stty stop undef 
 
 # beeping is annoying
 unsetopt BEEP
@@ -19,6 +22,7 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 # compinit
 _comp_options+=(globdots)		# Include hidden files.
+setopt globdots
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -36,7 +40,7 @@ source "$ZDOTDIR/zsh-functions"
 # Normal files to source
 zsh_add_file "zsh-exports"
 zsh_add_file "zsh-aliases"
-zsh_add_file "git.plugin.zsh"
+zsh_add_file "git.plugin.zsh" # Plugin for git from the oh-my-zsh repo
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -47,17 +51,13 @@ zsh_add_plugin "hlissner/zsh-autopair"
 # More completions https://github.com/zsh-users/zsh-completions
 
 # Key-bindings
-# bindkey -s '^o' 'ranger^M'
-# bindkey -s '^f' 'zi^M'
-# bindkey -s '^s' 'ncdu^M'
+bindkey -s '^o' 'ranger^M'
+bindkey -s '^f' 'zi^M'
+bindkey -s '^s' 'ncdu^M'
 # bindkey -s '^n' 'nvim $(fzf)^M'
 # bindkey -s '^v' 'nvim\n'
 # bindkey -s '^z' 'zi^M'
 # bindkey '^[[P' delete-char
-# bindkey "^p" up-line-or-beginning-search # Up
-# bindkey "^n" down-line-or-beginning-search # Down
-# bindkey "^k" up-line-or-beginning-search # Up
-# bindkey "^j" down-line-or-beginning-search # Down
 # bindkey -r "^u"
 # bindkey -r "^d"
 

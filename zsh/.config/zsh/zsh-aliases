@@ -17,6 +17,10 @@ alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 
+# ls shortcuts
+alias ls='ls --color=auto'
+alias l='ls -oFA --color=auto --group-directories-first'
+
 # easier to read disk
 alias df='df -h'     # human-readable sizes
 alias free='free -m' # show sizes in MB
