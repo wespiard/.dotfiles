@@ -1,14 +1,6 @@
 #!/bin/sh
-echo ".zshrc was loaded."
-
-# zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.cache/zsh/.zsh_history
-setopt SHARE_HISTORY
-
 # some useful options (man zshoptions)
-setopt autocd extendedglob nomatch menucomplete
+setopt SHARE_HISTORY autocd extendedglob nomatch menucomplete
 # Disable ctrl-s to freeze terminal.
 
 stty stop undef 
