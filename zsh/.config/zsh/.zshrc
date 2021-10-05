@@ -1,5 +1,4 @@
 #!/bin/sh
-echo ".zshrc was loaded."
 
 # zsh_history
 HISTSIZE=10000
@@ -41,7 +40,7 @@ source "$ZDOTDIR/zsh-functions"
 # Normal files to source
 zsh_add_file "zsh-exports"
 zsh_add_file "zsh-aliases"
-zsh_add_file "git.plugin.zsh" # Plugin for git from the oh-my-zsh repo
+#zsh_add_file "git.plugin.zsh" # Plugin for git from the oh-my-zsh repo
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -98,6 +97,6 @@ export TERMINAL="alacritty"
 # setxkbmap -option caps:swapescape
 
 # set pure prompt
-fpath+=$HOME/.zsh/pure
+fpath+=$HOME/.local/share/pure
 autoload -U promptinit; promptinit
 prompt pure
