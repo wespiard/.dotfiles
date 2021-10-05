@@ -1,3 +1,5 @@
 [user]
 	name = Wes Piard
   email = wespiard@ufl.edu
+[core]
+	editor = lvim
