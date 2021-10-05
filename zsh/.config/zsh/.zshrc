@@ -7,7 +7,7 @@ HISTFILE=~/.cache/zsh/.zsh_history
 setopt SHARE_HISTORY
 
 # some useful options (man zshoptions)
-setopt autocd extendedglob nomatch menucomplete
+setopt SHARE_HISTORY autocd extendedglob nomatch menucomplete
 # Disable ctrl-s to freeze terminal.
 
 stty stop undef 
@@ -100,3 +100,19 @@ export TERMINAL="alacritty"
 fpath+=$HOME/.local/share/pure
 autoload -U promptinit; promptinit
 prompt pure
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/UFAD/wespiard/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/UFAD/wespiard/.miniconda/etc/profile.d/conda.sh" ]; then
+        . "/home/UFAD/wespiard/.miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/UFAD/wespiard/.miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
