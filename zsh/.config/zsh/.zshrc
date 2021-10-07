@@ -1,13 +1,10 @@
 #!/bin/sh
 
 # zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.cache/zsh/.zsh_history
 setopt SHARE_HISTORY
 
 # some useful options (man zshoptions)
-setopt SHARE_HISTORY autocd extendedglob nomatch menucomplete
+setopt autocd extendedglob nomatch menucomplete
 # Disable ctrl-s to freeze terminal.
 
 stty stop undef 
@@ -46,20 +43,13 @@ zsh_add_file "zsh-aliases"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
-# zsh_add_completion "esc/conda-zsh-completion" false
+zsh_add_completion "esc/conda-zsh-completion" true
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
 
 # Key-bindings
-bindkey -s '^o' 'ranger^M'
 bindkey -s '^f' 'zi^M'
-bindkey -s '^s' 'ncdu^M'
-# bindkey -s '^n' 'nvim $(fzf)^M'
-# bindkey -s '^v' 'nvim\n'
-# bindkey -s '^z' 'zi^M'
-# bindkey '^[[P' delete-char
-# bindkey -r "^u"
-# bindkey -r "^d"
+bindkey -s '^o' 'ranger^M'
 
 # FZF 
 # TODO update for mac
@@ -76,41 +66,25 @@ compinit
 # autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
 
-# TODO Remove these
-# setxkbmap -option caps:escape
-# xset r rate 210 40
-
-# Speedy keys
-# xset r rate 210 40
-
 # Environment variables set everywhere
 export EDITOR="lvim"
 export TERMINAL="alacritty"
-# export BROWSER="brave"
 
-# For QT Themes
-# export QT_QPA_PLATFORMTHEME=qt5ct
-
-# remap caps to escape
-# setxkbmap -option caps:escape
-# swap escape and caps
-# setxkbmap -option caps:swapescape
-
-# set pure prompt
+# Set pure prompt
 fpath+=$HOME/.local/share/pure
 autoload -U promptinit; promptinit
 prompt pure
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/UFAD/wespiard/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/wes/.miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/UFAD/wespiard/.miniconda/etc/profile.d/conda.sh" ]; then
-        . "/home/UFAD/wespiard/.miniconda/etc/profile.d/conda.sh"
+    if [ -f "/home/wes/.miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/wes/.miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/UFAD/wespiard/.miniconda/bin:$PATH"
+        export PATH="/home/wes/.miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
