@@ -15,7 +15,7 @@ CVS
 _darcs
 \.hg
 
-\.git/
+\.git
 \.gitignore
 
 .+~          # emacs backup files
