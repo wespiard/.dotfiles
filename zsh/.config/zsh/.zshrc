@@ -70,6 +70,11 @@ compinit
 export EDITOR="lvim"
 export TERMINAL="alacritty"
 
+# If pure prompt repo doesn't exist, clone it
+if [ ! -d "$HOME/.local/share/pure" ]; then 
+    git clone "https://github.com/sindresorhus/pure.git" "$HOME/.local/share/pure"
+fi
+
 # Set pure prompt
 fpath+=$HOME/.local/share/pure
 autoload -U promptinit; promptinit
