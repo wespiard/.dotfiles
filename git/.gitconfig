@@ -2,4 +2,4 @@
 	name = Wes Piard
   email = wespiard@ufl.edu
 [core]
-	editor = lvim
+	editor = nvim

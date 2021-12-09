@@ -4,12 +4,8 @@
 # ZSH
 # alias j='z'
 # alias f='zi'
-alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 alias nvimrc='nvim ~/.config/nvim/'
 alias zs='source $ZDOTDIR/.zshrc'
-
-# Git
-alias g='lazygit'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -34,3 +30,57 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+
+
+# Git
+alias g='lazygit'
+
+alias ga='git add'
+alias gaa='git add --all'
+alias gac='git add --all && git commit -v'
+
+alias gst='git status'
+alias gstu='git status -u'
+
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbda='git branch --no-color --merged | command grep -vE "^([+*]|\s*($(git_main_branch)|$(git_develop_branch))\s*$)" | command xargs git branch -d 2>/dev/null'
+alias gbD='git branch -D'
+alias gbl='git blame -b -w'
+
+alias gc='git commit -v'
+alias gc!='git commit -v --amend'
+alias gcn!='git commit -v --no-edit --amend'
+alias gca='git commit -v -a'
+alias gca!='git commit -v -a --amend'
+alias gcan!='git commit -v -a --no-edit --amend'
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+
+alias gcf='git config --list'
+
+alias gcl='git clone --recurse-submodules'
+alias gclean='git clean -id'
+alias gpristine='git reset --hard && git clean -dffx'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gcor='git checkout --recurse-submodules'
+alias gcount='git shortlog -sn'
+alias gcp='git cherry-pick'
+alias gcpa='git cherry-pick --abort'
+alias gcpc='git cherry-pick --continue'
+
+alias gd='git diff'
+alias gdca='git diff --cached'
+alias gdcw='git diff --cached --word-diff'
+alias gdct='git describe --tags $(git rev-list --tags --max-count=1)'
+alias gds='git diff --staged'
+alias gdt='git diff-tree --no-commit-id --name-only -r'
+alias gdup='git diff @{upstream}'
+alias gdw='git diff --word-diff'
+
+alias gf='git fetch'
+alias gfo='git fetch origin'
+
+alias gfg='git ls-files | grep'

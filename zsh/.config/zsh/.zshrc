@@ -7,6 +7,30 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Useful Functions
+source "$ZDOTDIR/zsh-functions"
+
+# Normal files to source
+zsh_add_file "zsh-exports"
+zsh_add_file "zsh-aliases"
+
+# Plugins (Antibody)
+if [ -f "$ZDOTDIR/.zsh_plugins.sh" ]; then
+    source $ZDOTDIR/.zsh_plugins.sh
+else 
+  if ! command -v "antibody" 
+  then 
+    # install antibody
+    echo "Installing Antibody..."
+    curl -sfL git.io/antibody | sh -s - -b $HOME/.local/bin
+  
+  fi
+
+    # bundle plugins
+    antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh
+
+fi
+
 # zsh_history
 setopt SHARE_HISTORY
 
@@ -44,32 +68,16 @@ bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 # Colors
 #autoload -Uz colors && colors
 
-# Useful Functions
-source "$ZDOTDIR/zsh-functions"
-
-# Normal files to source
-zsh_add_file "zsh-exports"
-zsh_add_file "zsh-aliases"
-
-
-# Plugins
-source $ZDOTDIR/.zsh_plugins.sh
-
-
-# Environment variables set everywhere
-export EDITOR="nvim"
-export TERMINAL="alacritty"
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/wes/.miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/.miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/wes/.miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/wes/.miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/.miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/.miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/wes/.miniconda3/bin:$PATH"
+        export PATH="$HOME/.miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
