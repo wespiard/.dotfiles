@@ -83,4 +83,7 @@ alias gdw='git diff --word-diff'
 alias gf='git fetch'
 alias gfo='git fetch origin'
 
+alias gpl='git pull'
+alias gps='git push'
+
 alias gfg='git ls-files | grep'
