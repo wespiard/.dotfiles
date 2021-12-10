@@ -70,6 +70,8 @@ fi
 popd &> /dev/null
 rm -rf $TEMPDIR &> /dev/null
 
-source $HOME/.bash_profile
+if [ -f $HOME/.bash_profile ]; then
+    source $HOME/.bash_profile
+fi
 
 # echo "Zsh installed! Restart shell or login again for changes to take effect."
