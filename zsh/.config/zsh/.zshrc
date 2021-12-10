@@ -33,24 +33,14 @@ fi
 
 # zsh_history
 setopt SHARE_HISTORY
+setopt HIST_FIND_NO_DUPS
 
 # some useful options (man zshoptions)
-#setopt autocd extendedglob nomatch menucomplete
-# Disable ctrl-s to freeze terminal.
-
-#stty stop undef 
+setopt auto_cd nomatch menucomplete
 
 # beeping is annoying
 unsetopt BEEP
 
-# completions
-#autoload -Uz compinit
-#zstyle ':completion:*' menu select
-# zstyle ':completion::complete:lsof:*' menu yes select
-#zmodload zsh/complist
-# compinit
-#_comp_options+=(globdots)		# Include hidden files.
-#setopt globdots
 
 
 # load functions
@@ -65,19 +55,17 @@ bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 # start typing + [Down-Arrow] - fuzzy find history backward
 bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 
-# Colors
-#autoload -Uz colors && colors
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/.miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "$HOME/.miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/.miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/.miniconda/etc/profile.d/conda.sh" ]; then
+        . "$HOME/.miniconda/etc/profile.d/conda.sh"
     else
-        export PATH="$HOME/.miniconda3/bin:$PATH"
+        export PATH="$HOME/.miniconda/bin:$PATH"
     fi
 fi
 unset __conda_setup
