@@ -80,11 +80,6 @@ bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 # start typing + [Down-Arrow] - fuzzy find history backward
 bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 
-# add key to ssh agent on login
-eval $(ssh-agent -s) &> /dev/null
-ssh-add $HOME/.ssh/id_ed25519
-
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('$HOME/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -99,6 +94,8 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+conda activate
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
