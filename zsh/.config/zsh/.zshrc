@@ -7,6 +7,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# install zoxide
+if ! command -v zoxide
+then 
+  echo "Installing Zoxide..."
+  curl -sS https://webinstall.dev/zoxide | bash
+fi
+
+# Maps zoxide fzf to Ctrl+F
+bindkey -s '^f' 'zi^M'
+
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
 
@@ -23,13 +33,11 @@ else
     # install antibody
     echo "Installing Antibody..."
     curl -sfL git.io/antibody | sh -s - -b $HOME/.local/bin
-  
   fi
-
     # bundle plugins
     antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh
-
 fi
+
 
 # zsh_history
 setopt SHARE_HISTORY
@@ -40,8 +48,6 @@ setopt auto_cd nomatch menucomplete
 
 # beeping is annoying
 unsetopt BEEP
-
-
 
 # load functions
 autoload -Uz up-line-or-beginning-search
