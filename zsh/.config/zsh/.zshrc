@@ -8,7 +8,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # install zoxide
-if ! command -v zoxide
+if [ ! $(command -v "zoxide") ];
 then 
   echo "Installing Zoxide..."
   curl -sS https://webinstall.dev/zoxide | bash

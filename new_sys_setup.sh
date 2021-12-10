@@ -59,9 +59,9 @@ then
   make install &> /dev/null
 fi
 
-if ! command -v zsh &> /dev/null
+if ! command -v fzf &> /dev/null
 then
-  echo "Installing Zsh..."
+  echo "Installing fzf..."
   cd $TEMPDIR
   wget https://github.com/junegunn/fzf/releases/download/0.28.0/fzf-0.28.0-linux_amd64.tar.gz
   tar xf fzf-0.28.0-linux_amd64.tar.gz --directory $INSTALL_DIR/bin
