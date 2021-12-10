@@ -23,17 +23,20 @@ else
     # install antibody
     echo "Installing Antibody..."
     curl -sfL git.io/antibody | sh -s - -b $HOME/.local/bin
-  
   fi
-
     # bundle plugins
     antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh
-
 fi
 
 # zsh_history
 setopt SHARE_HISTORY
 setopt HIST_FIND_NO_DUPS
+
+# create directory for .zsh_history file, if it doesn't exist
+export HISTFILE=$HOME/.cache/zsh/.zsh_history
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+mkdir -p $HOME/.cache/zsh
 
 # some useful options (man zshoptions)
 setopt auto_cd nomatch menucomplete
