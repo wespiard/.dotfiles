@@ -4,7 +4,8 @@
 # ZSH
 # alias j='z'
 # alias f='zi'
-alias nvimrc='nvim ~/.config/nvim/'
+alias nvrc='nvim ~/.config/nvim/'
+alias nvzs='nvim $ZDOTDIR/.zshrc' 
 alias zs='source $ZDOTDIR/.zshrc'
 
 # Colorize grep output (good for log files)
