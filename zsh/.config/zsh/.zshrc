@@ -8,22 +8,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # install zoxide
-if [ ! $(command -v "zoxide") ];
-then 
+if [ ! command -v zoxide &> /dev/null ]; then 
   echo "Installing Zoxide..."
   curl -sS https://webinstall.dev/zoxide | bash
 fi
 
-if ! command -v fzf &> /dev/null
-then
+if [ ! command -v fzf &> /dev/null ]; then
   echo "Installing fzf..."
   cd $TEMPDIR
   wget https://github.com/junegunn/fzf/releases/download/0.28.0/fzf-0.28.0-linux_amd64.tar.gz
   tar xf fzf-0.28.0-linux_amd64.tar.gz --directory $INSTALL_DIR/bin
 fi
 
-if ! command -v lazygit &> /dev/null
-then
+if [ ! command -v lazygit &> /dev/null ]; then
   echo "Installing lazygit..."
   cd $TEMPDIR
   wget https://github.com/jesseduffield/lazygit/releases/download/v0.31.4/lazygit_0.31.4_Linux_x86_64.tar.gz
@@ -92,9 +89,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# Install lazygit
-conda install -c conda-forge lazygit
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
