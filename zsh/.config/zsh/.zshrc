@@ -69,16 +69,18 @@ setopt auto_cd nomatch menucomplete
 unsetopt BEEP
 
 # load functions
-autoload -Uz up-line-or-beginning-search
-autoload -Uz down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
+# autoload -Uz up-line-or-beginning-search
+# autoload -Uz down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
 
 # start typing + [Up-Arrow] - fuzzy find history forward
-bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+bindkey "${terminfo[kcuu1]}" history-substring-search-up
+# bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 
 # start typing + [Down-Arrow] - fuzzy find history backward
-bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+bindkey "${terminfo[kcud1]}" history-substring-search-down
+# bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

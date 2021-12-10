@@ -1,6 +1,10 @@
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
 zsh-users/zsh-completions
+
+# Reminds about aliases
+MichaelAquilina/zsh-you-should-use
 
 # Prompt Style 
 romkatv/powerlevel10k
