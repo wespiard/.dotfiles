@@ -7,6 +7,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Maps zoxide fzf to Ctrl+F
+bindkey -s '^f' 'zi^M'
+
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
 
@@ -28,6 +31,7 @@ else
     antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh
 fi
 
+
 # zsh_history
 setopt SHARE_HISTORY
 setopt HIST_FIND_NO_DUPS
@@ -43,8 +47,6 @@ setopt auto_cd nomatch menucomplete
 
 # beeping is annoying
 unsetopt BEEP
-
-
 
 # load functions
 autoload -Uz up-line-or-beginning-search
@@ -73,6 +75,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
