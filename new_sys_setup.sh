@@ -59,6 +59,28 @@ then
   make install &> /dev/null
 fi
 
+# install zoxide
+if [ ! $(command -v "zoxide") ];
+then 
+  echo "Installing Zoxide..."
+  curl -sS https://webinstall.dev/zoxide | bash
+fi
+
+if ! command -v fzf &> /dev/null
+then
+  echo "Installing fzf..."
+  cd $TEMPDIR
+  wget https://github.com/junegunn/fzf/releases/download/0.28.0/fzf-0.28.0-linux_amd64.tar.gz
+  tar xf fzf-0.28.0-linux_amd64.tar.gz --directory $INSTALL_DIR/bin
+fi
+
+if ! command -v lazygit &> /dev/null
+then
+  echo "Installing lazygit..."
+  cd $TEMPDIR
+  wget https://github.com/jesseduffield/lazygit/releases/download/v0.31.4/lazygit_0.31.4_Linux_x86_64.tar.gz
+  tar xf lazygit_0.31.4_Linux_x86_64.tar.gz --directory $INSTALL_DIR/bin
+fi
 
 popd &> /dev/null
 rm -rf $TEMPDIR &> /dev/null

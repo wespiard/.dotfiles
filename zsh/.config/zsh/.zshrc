@@ -56,6 +56,12 @@ fi
 setopt SHARE_HISTORY
 setopt HIST_FIND_NO_DUPS
 
+# create directory for .zsh_history file, if it doesn't exist
+export HISTFILE=$HOME/.cache/zsh/.zsh_history
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+mkdir -p $HOME/.cache/zsh
+
 # some useful options (man zshoptions)
 setopt auto_cd nomatch menucomplete
 
@@ -73,6 +79,10 @@ bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 
 # start typing + [Down-Arrow] - fuzzy find history backward
 bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+
+# add key to ssh agent on login
+eval $(ssh-agent -s) &> /dev/null
+ssh-add $HOME/.ssh/id_ed25519
 
 
 # >>> conda initialize >>>
