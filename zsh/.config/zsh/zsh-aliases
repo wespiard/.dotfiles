@@ -20,7 +20,8 @@ alias rm='rm -i'
 
 # ls shortcuts
 alias ls='ls --color=auto'
-alias l='ls -oFA --color=auto --group-directories-first'
+#alias l='ls -oFA --color=auto --group-directories-first'
+alias l='exa -lFa --group-directories-first --icons'
 
 # easier to read disk
 alias df='df -h'     # human-readable sizes
