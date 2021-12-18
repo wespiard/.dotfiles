@@ -25,8 +25,6 @@ keymap("n", "<C-Down>", "<C-w>j", opts) -- Down
 keymap("n", "<C-Up>", "<C-w>k", opts) -- Up
 keymap("n", "<C-Right>", "<C-w>l", opts) -- Right
 
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
-
 -- Resize with arrows
 keymap("n", "<C-k>", ":resize -2<CR>", opts)
 keymap("n", "<C-j>", ":resize +2<CR>", opts)
@@ -64,3 +62,6 @@ keymap("t", "<C-Left>",  "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-Down>",  "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-Up>",    "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-Right>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- Nvimtree
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
