@@ -1,5 +1,0 @@
-require('plugins')
-require('user.options')
-require('user.nvim-tree-config')
-require('user.keymaps')
---require('user.lsp')
