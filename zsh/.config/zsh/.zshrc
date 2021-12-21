@@ -8,7 +8,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # install zoxide
-if [ ! command -v zoxide &> /dev/null ]; then 
+if [ ! command -v zoxide &> /dev/null ]; then
   echo "Installing Zoxide..."
   curl -sS https://webinstall.dev/zoxide | bash
 fi
@@ -40,9 +40,9 @@ zsh_add_file "zsh-aliases"
 # Plugins (Antibody)
 if [ -f "$ZDOTDIR/.zsh_plugins.sh" ]; then
     source $ZDOTDIR/.zsh_plugins.sh
-else 
-  if ! command -v "antibody" 
-  then 
+else
+  if ! command -v "antibody"
+  then
     # install antibody
     echo "Installing Antibody..."
     curl -sfL git.io/antibody | sh -s - -b $HOME/.local/bin
@@ -64,6 +64,10 @@ mkdir -p $HOME/.cache/zsh
 
 # some useful options (man zshoptions)
 setopt auto_cd nomatch menucomplete
+
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
 
 # beeping is annoying
 unsetopt BEEP
