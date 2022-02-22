@@ -3,3 +3,5 @@
   email = wespiard@ufl.edu
 [core]
   editor = nvim
+[init]
+	defaultBranch = main
