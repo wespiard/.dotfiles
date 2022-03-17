@@ -8,27 +8,30 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # install zoxide
-if [ ! command -v zoxide &> /dev/null ]; then
-  echo "Installing Zoxide..."
-  curl -sS https://webinstall.dev/zoxide | bash
-fi
+# if [ ! command -v zoxide &> /dev/null ]; then
+#   echo "Installing Zoxide..."
+#   curl -sS https://webinstall.dev/zoxide | bash
+# fi
 
-if [ ! command -v fzf &> /dev/null ]; then
-  echo "Installing fzf..."
-  cd $TEMPDIR
-  wget https://github.com/junegunn/fzf/releases/download/0.28.0/fzf-0.28.0-linux_amd64.tar.gz
-  tar xf fzf-0.28.0-linux_amd64.tar.gz --directory $INSTALL_DIR/bin
-fi
+# Initialize Zoxide.
+eval "$(zoxide init zsh)"
 
-if [ ! command -v lazygit &> /dev/null ]; then
-  echo "Installing lazygit..."
-  cd $TEMPDIR
-  wget https://github.com/jesseduffield/lazygit/releases/download/v0.31.4/lazygit_0.31.4_Linux_x86_64.tar.gz
-  tar xf lazygit_0.31.4_Linux_x86_64.tar.gz --directory $INSTALL_DIR/bin
-fi
+# if [ ! command -v fzf &> /dev/null ]; then
+#   echo "Installing fzf..."
+#   cd $TEMPDIR
+#   wget https://github.com/junegunn/fzf/releases/download/0.28.0/fzf-0.28.0-linux_amd64.tar.gz
+#   tar xf fzf-0.28.0-linux_amd64.tar.gz --directory $INSTALL_DIR/bin
+# fi
+
+# if [ ! command -v lazygit &> /dev/null ]; then
+#   echo "Installing lazygit..."
+#   cd $TEMPDIR
+#   wget https://github.com/jesseduffield/lazygit/releases/download/v0.31.4/lazygit_0.31.4_Linux_x86_64.tar.gz
+#   tar xf lazygit_0.31.4_Linux_x86_64.tar.gz --directory $INSTALL_DIR/bin
+# fi
 
 # Maps zoxide fzf to Ctrl+F
-bindkey -s '^f' 'zi^M'
+# bindkey -s '^f' 'zi^M'
 
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
@@ -57,10 +60,10 @@ setopt SHARE_HISTORY
 setopt HIST_FIND_NO_DUPS
 
 # create directory for .zsh_history file, if it doesn't exist
+mkdir -p $HOME/.cache/zsh
 export HISTFILE=$HOME/.cache/zsh/.zsh_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
-mkdir -p $HOME/.cache/zsh
 
 # some useful options (man zshoptions)
 setopt auto_cd nomatch menucomplete
@@ -88,19 +91,18 @@ bindkey "${terminfo[kcud1]}" history-substring-search-down
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/wes/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/wes/.miniconda/etc/profile.d/conda.sh" ]; then
-        . "/home/wes/.miniconda/etc/profile.d/conda.sh"
+    if [ -f "$HOME/.miniconda/etc/profile.d/conda.sh" ]; then
+        . "$HOME/.miniconda/etc/profile.d/conda.sh"
     else
-        export PATH="/home/wes/.miniconda/bin:$PATH"
+        export PATH="$HOME/.miniconda/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

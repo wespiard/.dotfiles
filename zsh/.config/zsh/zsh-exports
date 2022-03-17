@@ -10,5 +10,3 @@ export GOPATH=$HOME/.local/share/go
 
 export EDITOR="nvim"
 export TERMINAL="alacritty"
-
-eval "$(zoxide init zsh)"
