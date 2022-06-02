@@ -11,9 +11,12 @@ return {
   -------------------------
   -- FONTS
   -------------------------
-  font = wezterm.font("FiraCode NF"),
-  harfbuzz_features = {"zero", "cv04", "cv02", "ss05", "ss04", "ss03", 
-                       "cv31", "cv31", "cv29", "cv30", "cv20", "cv24"},
+  
+  font = wezterm.font({
+    family="FiraCode NF",
+    harfbuzz_features = {"zero", "cv04", "cv02", "ss05", "ss04", "ss03", "cv31", "cv31", "cv29", "cv30", "cv20", "cv24"}
+  }),
+   
 
   -- You can specify some parameters to influence the font selection;
   -- for example, this selects a Bold, Italic font variant.
@@ -36,4 +39,10 @@ return {
   color_scheme = "nord",
   -- color_scheme = "OneHalfDark",
   -- color_scheme = "Subliminal",
+
+  -- Change font size without aftecting window
+  adjust_window_size_when_changing_font_size = false,
+
+  -- Close window without prompt
+  window_close_confirmation = "NeverPrompt",
 }

@@ -73,7 +73,9 @@ return packer.startup(
 
     -- Nvim Tree
     use { 'kyazdani42/nvim-tree.lua',
-      requires = {'kyazdani42/nvim-web-devicons'}}
+      requires = {'kyazdani42/nvim-web-devicons'},
+      tag = 'nightly' 
+    }
 
     -- Bufferline
     use 'akinsho/bufferline.nvim'

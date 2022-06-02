@@ -1,7 +1,7 @@
 local configs = require('nvim-treesitter.configs')
 
 configs.setup {
-  ensure_installed = 'maintained',
+  ensure_installed = {'c', 'rust', 'verilog', 'markdown'},
 
   sync_install = false,
 
@@ -10,7 +10,7 @@ configs.setup {
   highlight = {
     enable = true, -- false will disable the whole extension
     disable = { '' }, -- list of language that will be disabled
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false,
   },
   playground = {
     enable = true,
