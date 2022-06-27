@@ -74,11 +74,14 @@ return packer.startup(
     -- Nvim Tree
     use { 'kyazdani42/nvim-tree.lua',
       requires = {'kyazdani42/nvim-web-devicons'},
-      tag = 'nightly' 
+      tag = 'nightly'
     }
 
     -- Bufferline
-    use 'akinsho/bufferline.nvim'
+    use {'akinsho/bufferline.nvim',
+      requires = {'kyazdani42/nvim-web-devicons'},
+      tag = "v2.*"
+    }
     use 'moll/vim-bbye'
 
     -- LuaLine
@@ -87,8 +90,7 @@ return packer.startup(
     -- Telescope
     use 'nvim-telescope/telescope.nvim'
     use 'ahmedkhalf/project.nvim'
-    use {'nvim-telescope/telescope-fzf-native.nvim',
-      run = 'make' }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
       -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter',
