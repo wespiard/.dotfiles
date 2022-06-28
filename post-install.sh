@@ -24,6 +24,31 @@ case $ID in
     zypper install -t pattern devel_basis
     zypper install -y zsh git stow exa
     ;;
+  ubuntu )
+    echo "Detected Ubuntu distribution."
+    echo "Updating packages."
+    apt update && apt upgrade -y
+    apt install -y build-essential libssl-dev
+    apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+    # wget https://github.com/Kitware/CMake/releases/download/v3.23.2/cmake-3.23.2.tar.gz
+    # tar -xf cmake-3.23.2.tar.gz
+    # cd cmake-3.23.2
+    # ./bootstrap -- -DCMAKE_BUILD_TYPE:STRING=Release
+    # make -j 4
+    # make install
+    # cd ../ && rm -rf cmake-3.23.2*
+    git clone https://github.com/neovim/neovim
+    cd neovim
+    git checkout v0.7.2
+    make CMAKE_BUILD_TYPE=Release -j 4
+    make CMAKE_INSTALL_PREFIX=$HOME/.local install
+    curl https://sh.rustup.rs -sSf | sh
+    source ~/.bashrc
+    cargo install exa
+    apt install -y zsh git stow
+    curl -sS https://webinstall.dev/zoxide | bash
+    chsh -s $(which zsh)
+    ;;
   * )
     echo "Unknown distribution!"
     ;;
