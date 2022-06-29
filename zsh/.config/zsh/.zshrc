@@ -8,10 +8,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # install zoxide
-# if [ ! command -v zoxide &> /dev/null ]; then
-#   echo "Installing Zoxide..."
-#   curl -sS https://webinstall.dev/zoxide | bash
-# fi
+if [ ! command -v zoxide &> /dev/null ]; then
+  echo "Installing Zoxide..."
+  curl -sS https://webinstall.dev/zoxide | bash
+fi
 
 # if [ ! command -v fzf &> /dev/null ]; then
 #   echo "Installing fzf..."
@@ -28,7 +28,7 @@ fi
 # fi
 
 # Maps zoxide fzf to Ctrl+F
-# bindkey -s '^f' 'zi^M'
+bindkey -s '^f' 'zi^M'
 
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
