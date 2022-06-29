@@ -34,7 +34,7 @@ case $ID in
     git clone https://github.com/neovim/neovim
     cd neovim
     git checkout release-0.7
-    make CMAKE_BUILD_TYPE=Release -j 4
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
     make CMAKE_INSTALL_PREFIX=$HOME/.local install
     cd ..
     apt install -y zsh git stow exa
