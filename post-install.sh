@@ -42,10 +42,8 @@ case $ID in
     git checkout v0.7.2
     make CMAKE_BUILD_TYPE=Release -j 4
     make CMAKE_INSTALL_PREFIX=$HOME/.local install
-    curl https://sh.rustup.rs -sSf | sh
-    source ~/.bashrc
-    cargo install exa
-    apt install -y zsh git stow
+    cd .. && rm -rf neovim 
+    apt install -y zsh git stow exa
     curl -sS https://webinstall.dev/zoxide | bash
     chsh -s $(which zsh)
     ;;

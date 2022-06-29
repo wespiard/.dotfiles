@@ -13,9 +13,6 @@ fi
 #   curl -sS https://webinstall.dev/zoxide | bash
 # fi
 
-# Initialize Zoxide.
-eval "$(zoxide init zsh)"
-
 # if [ ! command -v fzf &> /dev/null ]; then
 #   echo "Installing fzf..."
 #   cd $TEMPDIR
@@ -53,6 +50,9 @@ else
     # bundle plugins
     antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh
 fi
+
+# Initialize Zoxide.
+eval "$(zoxide init zsh)"
 
 
 # zsh_history
