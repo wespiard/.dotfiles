@@ -1,7 +1,9 @@
 [user]
-  name = Wes Piard
+  name = Wesley Piard
   email = wespiard@gmail.com
 [core]
-  editor = nvim
+	editor = vim
 [init]
 	defaultBranch = main
+[push]
+	default = simple
