@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
 
