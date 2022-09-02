@@ -11,12 +11,9 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
 # Variables that dictate where rust tools are installed and executed from.
-export CARGO_HOME=/home/wes/.rustup
-export RUSTUP_HOME=/home/wes/.cargo/bin
+export CARGO_HOME=$HOME/.rustup
+export RUSTUP_HOME=$HOME/.cargo/bin
 
 # Use Zsh arrays to prepend to path variable without duplicates.
 typeset -U path
-path=(~/.local/bin $path)
-path=($CARGO_HOME $path)
-
-export PATH
+path=($HOME/.local/bin $RUSTUP_HOME $CARGO_HOME $path)
