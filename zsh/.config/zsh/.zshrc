@@ -6,7 +6,12 @@ source "$ZDOTDIR/zsh-functions"
 # Add custom aliases
 zsh_add_file "zsh-aliases"
 
+###################################
 # Plugins (Antibody)
+###################################
+export NVM_COMPLETION=true
+export NVM_LAZY_LOAD=true
+
 if [ -f "$ZDOTDIR/.zsh_plugins.sh" ]; then
     source $ZDOTDIR/.zsh_plugins.sh
 else
@@ -20,7 +25,10 @@ else
   antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh
 fi
 
-# create directory for .zsh_history file, if it doesn't exist
+
+###################################
+# ZSH History
+###################################
 mkdir -p $HOME/.cache/zsh
 export HISTFILE=$HOME/.cache/zsh/.zsh_history
 export HISTSIZE=1000
@@ -62,3 +70,18 @@ if [ ! command -v zoxide &> /dev/null ]; then
 fi
 eval "$(zoxide init zsh)" # must be called after `compinit`
 
+###################################
+# Pure Prompt
+###################################
+PURE_DIR="$HOME/git/programs/pure"
+
+# Download Pure prompt if it doesn't exist.
+if [ ! -d "$PURE_DIR" ]; then
+  echo "Downloading Pure prompt..."
+  git clone https://github.com/sindresorhus/pure.git "$PURE_DIR"
+  echo "Done."
+fi
+
+fpath+=($PURE_DIR)
+autoload -U promptinit; promptinit
+prompt pure
