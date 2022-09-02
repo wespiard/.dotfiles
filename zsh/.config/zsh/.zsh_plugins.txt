@@ -1,3 +1,6 @@
+# Zsh-NVM
+lukechilds/zsh-nvm
+
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
@@ -5,6 +8,3 @@ zsh-users/zsh-completions
 
 # Reminds about aliases
 MichaelAquilina/zsh-you-should-use
-
-# Zsh-NVM
-lukechilds/zsh-nvm
