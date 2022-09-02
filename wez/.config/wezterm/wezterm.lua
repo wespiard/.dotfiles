@@ -5,7 +5,7 @@ return {
   -- DEFAULT PROGRAM
   -------------------------
   -- Launch WSL by default, starting in user home directory.
-  default_prog = {"wsl", "~"},
+  -- default_prog = {"wsl", "~"},
 
 
   -------------------------
@@ -13,7 +13,7 @@ return {
   -------------------------
   
   font = wezterm.font({
-    family="FiraCode NF",
+    family="Fira Code",
     harfbuzz_features = {"zero", "cv04", "cv02", "ss05", "ss04", "ss03", "cv31", "cv31", "cv29", "cv30", "cv20", "cv24"}
   }),
    
