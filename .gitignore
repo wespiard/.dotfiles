@@ -1,3 +1,4 @@
 .zcompdump
+.zcompcache
 **/plugin*/
 .zsh_plugins.sh
