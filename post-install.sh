@@ -21,7 +21,7 @@ case $ID in
     echo "Updating packages in Zypper."
     zypper refresh &> /dev/null
     zypper update -y &> /dev/null
-    zypper install -t pattern devel_basis
+    zypper install -t pattern devel_basis cmake
     zypper install -y zsh git stow exa fzf fzf-zsh-completion
     ;;
   ubuntu )
