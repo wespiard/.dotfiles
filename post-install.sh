@@ -64,11 +64,9 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit
 rm -rf lazygit.tar.gz
 
-# install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-
 chsh -s $(which zsh)
 
+source $ZDOTDIR/.zprofile
 source $ZDOTDIR/.zshrc
 
 echo ''
