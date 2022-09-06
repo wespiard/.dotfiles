@@ -5,22 +5,12 @@ local status_ok2, lspconfig = pcall(require, "lspconfig")
 if not status_ok2 then return end
 
 masonconfig.setup = {
-  ensure_installed = { "sumneko_lua", "rust_analyzer" }
+  ensure_installed = { "sumneko_lua" }
 }
 
 masonconfig.setup_handlers {
   function(server_name)
     lspconfig[server_name].setup {}
-  end,
-
-  ["rust_analyzer"] = function()
-    require("rust-tools").setup {
-      tools = {
-        autoSetHints = false,
-        executor = require("rust-tools/executors").toggleterm,
-        hover_actions = { border = "solid" },
-      },
-    }
   end,
 
   ["sumneko_lua"] = function()
