@@ -5,7 +5,8 @@ end
 
 local actions = require "telescope.actions"
 
-telescope.load_extension('project')
+pcall(telescope.load_extension('project'))
+pcall(telescope.load_extension('fzf'))
 
 telescope.setup {
   defaults = {
@@ -31,10 +32,7 @@ telescope.setup {
 
   extensions = {
     project = {
-      base_dirs = {
-        '~/.dotfiles',
-        '~/git/programs/wezterm',
-      },
+      base_dirs = {},
       hidden_files = true,
     }
   }

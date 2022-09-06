@@ -4,14 +4,12 @@ if not status_ok then
 end
 
 configs.setup({
-	ensure_installed = "all",
-	ignore_install = { "" },
-	highlight = {
-		enable = true,
-		disable = {},
-	},
-	autopairs = {
-		enable = true,
-	},
-	indent = { enable = true, disable = {} },
+	ensure_installed = {
+    'bash', 'bibtex', 'c', 'cmake', 'cpp', 'html', 'json',
+    'julia', 'latex', 'lua', 'make', 'markdown', 'python',
+    'rust', 'toml', 'verilog', 'vim', 'yaml'
+  },
+	highlight = { enable = true },
+	indent = { enable = true },
+	autopairs = { enable = true },
 })
