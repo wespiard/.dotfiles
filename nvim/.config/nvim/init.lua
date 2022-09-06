@@ -1,10 +1,12 @@
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.telescope"
-require "user.treesitter"
-require "user.colorscheme"
-require "user.comment"
-require "user.autocommands"
-require "user.indent_blankline"
-require "user.lualine"
+require 'user.options'
+require 'user.keymaps'
+require 'user.plugins'
+require 'user.telescope'
+require 'user.treesitter'
+require 'user.colorscheme'
+require 'user.comment'
+require 'user.autocommands'
+require 'user.indent_blankline'
+require 'user.lualine'
+
+require 'user.lsp'

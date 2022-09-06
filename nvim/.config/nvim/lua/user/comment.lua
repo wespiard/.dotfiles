@@ -5,8 +5,7 @@ end
 
 local ft = require('Comment.ft')
 
+-- Set VHDL comment (by default, line comment was wrong)
 ft.set('vhdl', {'--%s', '/*%s*/'})
 
-comment.setup {
-  
-}
+comment.setup{}
