@@ -1,17 +1,12 @@
 local wezterm = require 'wezterm';
 
-return {
-  -------------------------
-  -- DEFAULT PROGRAM
-  -------------------------
-  -- Launch WSL by default, starting in user home directory.
-  -- default_prog = {"wsl", "~"},
-
+local config = {
 
   -------------------------
   -- FONTS
   -------------------------
   
+  font_size = 13.0;
   font = wezterm.font({
     family="Fira Code",
     harfbuzz_features = {"zero", "cv04", "cv02", "ss05", "ss04", "ss03", "cv31", "cv31", "cv29", "cv30", "cv20", "cv24"}
@@ -43,6 +38,26 @@ return {
   -- Change font size without aftecting window
   adjust_window_size_when_changing_font_size = false,
 
+  tab_bar_at_bottom = true,
+  hide_tab_bar_if_only_one_tab = true,
+
   -- Close window without prompt
-  window_close_confirmation = "NeverPrompt",
+  -- window_close_confirmation = "NeverPrompt",
 }
+
+local current_os = os.execute(uname);
+
+-------------------------
+-- DEFAULT PROGRAM
+-------------------------
+-- Launch WSL by default, starting in user home directory.
+if (current_os == true) 
+then
+  -- print('Running on Linux!');
+else
+  -- print('Running on something besides linux!');
+  config.default_prog = {"wsl", "~"};
+end
+
+return config;
+
