@@ -16,6 +16,6 @@ export CARGO_HOME=$HOME/.cargo
 
 # Use Zsh arrays to prepend to path variable without duplicates.
 typeset -U path
-path=($HOME/.local_testing/bin $HOME/.local/bin $RUSTUP_HOME $CARGO_HOME/bin $path)
-export LD_LIBRARY_PATH=$HOME/.local_testing/lib:$LD_LIBRARY_PATH
-export LIBRARY_PATH=$HOME/.local_testing/lib:$LIBRARY_PATH
+path=( $HOME/.local/bin $RUSTUP_HOME $CARGO_HOME/bin $path)
+export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=$HOME/.local/lib:$LIBRARY_PATH
