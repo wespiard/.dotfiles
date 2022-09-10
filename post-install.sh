@@ -13,16 +13,16 @@ echo ' Linux Post-installation Setup Script '
 echo '-------------------------------------------'
 
 # DETECT DISTRIBUTION
-ID=$(cat /etc/os-release | grep ^ID= | tr --delete [_='"'][A-Z])
+ID=$(cat /etc/os-release | grep ^ID= | tr -d [A-Z][='"'] | sed 's/-.*//')
 
 case $ID in
-  opensuse-leap )
+  opensuse )
     echo "Detected openSUSE distribution."
     echo "Updating packages in Zypper."
     zypper refresh &> /dev/null
     zypper update -y &> /dev/null
     zypper install -t pattern devel_basis
-    zypper install -y zsh git stow exa
+    zypper install -y zsh git stow exa fzf fzf-zsh-completion
     ;;
   ubuntu )
     echo "Detected Ubuntu distribution."
@@ -43,112 +43,32 @@ case $ID in
     ;;
   * )
     echo "Unknown distribution!"
+    exit
     ;;
 esac
-
 
 
 INSTALL_DIR=$HOME/.local
 PATH=$PATH:$INSTALL_DIR/bin
 
-# pushd . &> /dev/null
-# TEMPDIR=$(mktemp -d)
-
-###### INSTALL STOW ########
-# if ! command -v stow &> /dev/null
-# then
-#   echo "Stow not found. Installing it now..."
-#   cd $TEMPDIR
-
-#   # Download and extract Stow source
-#   echo "Downloading Stow source for installation..."
-#   wget -q http://ftp.gnu.org/gnu/stow/stow-latest.tar.gz
-
-#   echo "Extracting installation files..."
-#   tar -xf stow-latest.tar.gz
-#   rm -rf *.gz
-#   cd stow*
-
-#   # Install stow
-#   echo "Installing Stow..."
-#   ./configure --prefix=$INSTALL_DIR  &> /dev/null
-#   make -j &> /dev/null
-#   make install  &> /dev/null
-
-#   rm -rf $TEMPDIR
-
-#   echo "Stow installation complete."
-# else
-#   echo "Stow is already installed."
-# fi
-
 # Remove existing dotfiles
 rm -rf $HOME/.gitconfig $HOME/.tmux.conf $HOME/.config/zsh $HOME/.zshrc
 
-# popd &> /dev/null
+# Stow dotfiles to $HOME directory
+echo "Stowing dotfiles to $HOME directory."
+stow zsh git tmux nvim wez
 
-# # Stow dotfiles to $HOME directory
-# echo "Stowing dotfiles to $HOME directory."
-# stow zsh git tmux
+# install lazygit
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[0-35.]+')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit
+rm -rf lazygit.tar.gz
 
-# pushd . &> /dev/null
+# install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
-# # Install ncurses, required to install Zsh
-# if [ ! -f $INSTALL_DIR/lib/libncurses.a ]; then
-#   echo "Installing ncurses library (dependency of zsh installation)."
-#   cd $TEMPDIR
-#   wget ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz --no-check-certificate
-#   tar xf ncurses-6.1.tar.gz
-#   cd ncurses-6.1
-#   ./configure --prefix=$HOME/.local CXXFLAGS="-fPIC" CFLAGS="-fPIC"
-#   make -j && make install &> /dev/null
-# fi
+chsh -s $(which zsh)
 
-# # Install Zsh
-# if ! command -v zsh &> /dev/null
-# then
-#   echo "Installing Zsh..."
-#   cd $TEMPDIR
-#   wget https://www.zsh.org/pub/zsh-5.8.tar.xz --no-check-certificate
-#   tar xf zsh-5.8.tar.xz
-#   cd zsh-5.8
-#   ./configure --prefix="$HOME/.local" \
-#     CPPFLAGS="-I$HOME/.local/include" \
-#     LDFLAGS="-L$HOME/.local/lib" &> /dev/null
-#   make -j &> /dev/null
-#   make install &> /dev/null
-# fi
-
-# # install zoxide
-# if [ ! $(command -v "zoxide") ];
-# then 
-#   echo "Installing Zoxide..."
-#   curl -sS https://webinstall.dev/zoxide | bash
-# fi
-
-# if ! command -v fzf &> /dev/null
-# then
-#   echo "Installing fzf..."
-#   cd $TEMPDIR
-#   wget https://github.com/junegunn/fzf/releases/download/0.28.0/fzf-0.28.0-linux_amd64.tar.gz
-#   tar xf fzf-0.28.0-linux_amd64.tar.gz --directory $INSTALL_DIR/bin
-# fi
-
-# if ! command -v lazygit &> /dev/null
-# then
-#   echo "Installing lazygit..."
-#   cd $TEMPDIR
-#   wget https://github.com/jesseduffield/lazygit/releases/download/v0.31.4/lazygit_0.31.4_Linux_x86_64.tar.gz
-#   tar xf lazygit_0.31.4_Linux_x86_64.tar.gz --directory $INSTALL_DIR/bin
-# fi
-
-# popd &> /dev/null
-# rm -rf $TEMPDIR &> /dev/null
-
-# if [ -f $HOME/.bash_profile ]; then
-#     source $HOME/.bash_profile
-# fi
-
-# echo "Zsh installed! Restart shell or login again for changes to take effect."
+source $ZDOTDIR/.zshrc
 
 echo ''
