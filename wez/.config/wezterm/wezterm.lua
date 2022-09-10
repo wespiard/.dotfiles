@@ -1,8 +1,22 @@
-local wezterm = require 'wezterm';
+local wezterm = require 'wezterm'
 
-local config = {
+local config = {}
 
-  default_prog = {"wsl", "~"};
+-------------------------
+-- CHECK OPERATING SYSTEM
+-------------------------
+default_prog = {}
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  -- We are running on Windows
+  default_prog = {"wsl", "~"}
+else
+  default_prog = {}
+end
+
+
+config = {
+
+  default_prog = default_prog,
 
   -------------------------
   -- FONTS
@@ -18,11 +32,6 @@ local config = {
     },
     { family = 'JetBrains Mono' },
   },
-
-  -- You can specify some parameters to influence the font selection;
-  -- for example, this selects a Bold, Italic font variant.
-  -- font = wezterm.font("JetBrains Mono", {weight="Bold", italic=true})
-
 
   -------------------------
   -- COLOR SCHEMES
@@ -48,22 +57,8 @@ local config = {
   hide_tab_bar_if_only_one_tab = true,
 
   -- Close window without prompt
-  -- window_close_confirmation = "NeverPrompt",
+  window_close_confirmation = "NeverPrompt",
 }
 
-local current_os = os.execute(uname);
 
--------------------------
--- DEFAULT PROGRAM
--------------------------
--- Launch WSL by default, starting in user home directory.
-if (current_os == true) 
-then
-  print('Running on Linux!');
-else
-  print('Running on something besides linux!');
-  config.default_prog = {"wsl", "~"};
-end
-
-return config;
-
+return config
