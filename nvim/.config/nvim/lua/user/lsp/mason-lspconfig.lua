@@ -5,7 +5,8 @@ local status_ok2, lspconfig = pcall(require, "lspconfig")
 if not status_ok2 then return end
 
 masonconfig.setup = {
-  ensure_installed = { "sumneko_lua" }
+  ensure_installed = { "sumneko_lua", "pyright" },
+  automatic_installation = true
 }
 
 masonconfig.setup_handlers {
@@ -26,5 +27,10 @@ masonconfig.setup_handlers {
         },
       },
     }
+  end,
+
+  ["pyright"] = function()
+    lspconfig.pyright.setup{
+      }
   end,
 }
