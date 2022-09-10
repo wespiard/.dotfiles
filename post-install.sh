@@ -3,7 +3,7 @@
 # Check if script executed as root.
 if [ "$UID" -ne 0 ]; then
   echo 'You must be root to execute this script.'
-  exit 10
+  return
 fi
 
 clear
@@ -21,8 +21,8 @@ case $ID in
     echo "Updating packages in Zypper."
     zypper refresh &> /dev/null
     zypper update -y &> /dev/null
-    zypper install -t pattern devel_basis cmake
-    zypper install -y zsh git stow exa fzf fzf-zsh-completion
+    zypper install -y -t pattern devel_basis 
+    zypper install -y zsh git stow exa fzf fzf-zsh-completion cmake
     ;;
   ubuntu )
     echo "Detected Ubuntu distribution."
@@ -66,7 +66,6 @@ rm -rf lazygit.tar.gz
 
 chsh -s $(which zsh)
 
-source $ZDOTDIR/.zprofile
-source $ZDOTDIR/.zshrc
+exit
 
 echo ''

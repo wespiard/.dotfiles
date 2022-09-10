@@ -2,16 +2,22 @@ local wezterm = require 'wezterm';
 
 local config = {
 
+  default_prog = {"wsl", "~"};
+
   -------------------------
   -- FONTS
   -------------------------
   
   font_size = 13.0;
-  font = wezterm.font({
-    family="Fira Code",
-    harfbuzz_features = {"zero", "cv04", "cv02", "ss05", "ss04", "ss03", "cv31", "cv31", "cv29", "cv30", "cv20", "cv24"}
-  }),
-   
+  font = wezterm.font_with_fallback {
+    { family = 'Fira Code',
+      harfbuzz_features = {
+        "zero", "cv04", "cv02", "ss05", "ss04", "ss03", 
+        "cv31", "cv31", "cv29", "cv30", "cv20", "cv24"
+      }
+    },
+    { family = 'JetBrains Mono' },
+  },
 
   -- You can specify some parameters to influence the font selection;
   -- for example, this selects a Bold, Italic font variant.
@@ -53,9 +59,9 @@ local current_os = os.execute(uname);
 -- Launch WSL by default, starting in user home directory.
 if (current_os == true) 
 then
-  -- print('Running on Linux!');
+  print('Running on Linux!');
 else
-  -- print('Running on something besides linux!');
+  print('Running on something besides linux!');
   config.default_prog = {"wsl", "~"};
 end
 

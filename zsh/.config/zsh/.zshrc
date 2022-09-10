@@ -64,9 +64,10 @@ zstyle ':completion:*' menu select
 ###################################
 # Zoxide
 ###################################
-if [ ! command -v zoxide &> /dev/null ]; then
+if ! command -v "zoxide" >/dev/null 
+then
   echo "Installing Zoxide..."
-  curl -sS https://webinstall.dev/zoxide | bash
+  curl -sS https://webinstall.dev/zoxide | bash >/dev/null 
 fi
 eval "$(zoxide init zsh)" # must be called after `compinit`
 
