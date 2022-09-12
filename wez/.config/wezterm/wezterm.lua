@@ -54,7 +54,7 @@ local config = {
   add_wsl_distributions_to_launch_menu = false,
 
   keys = {
-    { key = 'w', mods = 'CTRL', action = wezterm.action.CloseCurrentPane { confirm = false } },
+    { key = 'w', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentPane { confirm = false } },
     { key = 't', mods = 'ALT', action = wezterm.action.ShowLauncher },
   }
 }
@@ -95,6 +95,11 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
       })
     end
   end
+
+  table.insert(launch_menu, {
+    label = 'DevCloud',
+    args = { 'wsl', 'ssh', 'devcloud' },
+  })
 
 else
   config.default_prog = {}

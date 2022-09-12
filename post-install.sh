@@ -23,6 +23,7 @@ case $ID in
     zypper update -y &> /dev/null
     zypper install -y -t pattern devel_basis 
     zypper install -y zsh git stow exa fzf fzf-zsh-completion cmake
+    zypper install -y ripgrep fd
     ;;
   ubuntu )
     echo "Detected Ubuntu distribution."

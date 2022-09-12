@@ -33,4 +33,10 @@ masonconfig.setup_handlers {
     lspconfig.pyright.setup{
       }
   end,
+
+  ["yamlls"] = function()
+    lspconfig.yamlls.setup{
+      filetypes = {"yaml", "core"},
+    }
+  end,
 }
