@@ -58,10 +58,10 @@ return packer.startup(function(use)
    use 'numtostr/comment.nvim'
 
   -- Interface
-  use { 'akinsho/bufferline.nvim' }
-  use { 'nvim-lualine/lualine.nvim' }
-  -- use { 'akinsho/bufferline.nvim', requires = { 'kyazdani142/nvim-web-devicons' } }
-  -- use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons'} }
+  -- use { 'akinsho/bufferline.nvim' }
+  -- use { 'nvim-lualine/lualine.nvim' }
+  use { 'akinsho/bufferline.nvim', requires = { 'kyazdani142/nvim-web-devicons' } }
+  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons'} }
 
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', tag = '*', requires = {'nvim-lua/plenary.nvim'}}
@@ -74,7 +74,7 @@ return packer.startup(function(use)
   use 'kyazdani42/nvim-tree.lua'
 
   -- Treesitter
-  use { 'nvim-treesitter/nvim-treesitter', 
+  use { 'nvim-treesitter/nvim-treesitter',
    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
    requires = {'nvim-treesitter/nvim-treesitter-textobjects'}
   }
