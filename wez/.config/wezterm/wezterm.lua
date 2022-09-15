@@ -5,12 +5,12 @@ local config = {
   -------------------------
   -- FONTS
   -------------------------
-  
+
   font_size = 13.0;
   font = wezterm.font_with_fallback {
     { family = 'Fira Code',
       harfbuzz_features = {
-        "zero", "cv04", "cv02", "ss05", "ss04", "ss03", 
+        "zero", "cv04", "cv02", "ss05", "ss04", "ss03",
         "cv31", "cv31", "cv29", "cv30", "cv20", "cv24"
       }
     },
@@ -21,6 +21,9 @@ local config = {
   -- COLOR SCHEMES
   -------------------------
   -- color_scheme = "Afterglow",
+  -- color_scheme = "Ashes (base16)",
+  -- color_scheme = "Ashes (light) (terminal.sexy)",
+  color_scheme = "dawnfox",
   -- color_scheme = "Blazer",
   -- color_scheme = "Dracula+",
   -- color_scheme = "Espresso",
@@ -30,7 +33,7 @@ local config = {
   -- color_scheme = "Later This Evening",
   -- color_scheme = "lovelace",
   -- color_scheme = "MaterialDarker",
-  color_scheme = "nord",
+  -- color_scheme = "nord",
   -- color_scheme = "OneHalfDark",
   -- color_scheme = "Subliminal",
 
@@ -72,29 +75,6 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     label = 'PowerShell',
     args = { 'powershell.exe', '-NoLogo' },
   })
-
-  -- Enumerate any WSL distributions that are installed and add those to the menu
-  local success, wsl_list, wsl_err =
-    wezterm.run_child_process { 'wsl.exe', '-l' }
-  -- `wsl.exe -l` has a bug where it always outputs utf16:
-  -- https://github.com/microsoft/WSL/issues/4607
-  -- So we get to convert it
-  wsl_list = wezterm.utf16_to_utf8(wsl_list)
-
-  for idx, line in ipairs(wezterm.split_by_newlines(wsl_list)) do
-    -- Skip the first line of output; it's just a header
-    if idx > 1 then
-      -- Remove the "(Default)" marker from the default line to arrive
-      -- at the distribution name on its own
-      local distro = line:gsub(' %(Default%)', '')
-
-      -- Add an entry that will spawn into the distro with the default shell
-      table.insert(launch_menu, {
-        label = distro .. ' (WSL default shell)',
-        args = { 'wsl', '~', '--distribution', distro },
-      })
-    end
-  end
 
   table.insert(launch_menu, {
     label = 'DevCloud',
