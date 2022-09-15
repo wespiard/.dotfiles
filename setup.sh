@@ -1,11 +1,13 @@
 #!/bin/sh
 
+# set -e
+
 PREFIX=$HOME/.local
 TEMP_DIR=$HOME/tmp
 
 export PATH=$PREFIX/bin:$PATH
-export LD_LIBRARY_PATH=$PREFIX/lib64:$PREFIX/lib:$LD_LIBRARY_PATH
-export LIBRARY_PATH=$PREFIX/lib64:$PREFIX/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/lib64:/usr/lib:$PREFIX/lib64:$PREFIX/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=/usr/lib64:/usr/lib:$PREFIX/lib64:$PREFIX/lib:$LIBRARY_PATH
 export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
 export C_INCLUDE_PATH=$PREFIX/include
 
@@ -26,25 +28,31 @@ then
     curl -sLO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
     # -b flag runs installer in batch mode without user interaction
-    bash Miniconda3-latest-Linux-x86_64.sh -b -p $CONDA_DIR > /dev/null
+    bash Miniconda3-latest-Linux-x86_64.sh -b -p $CONDA_DIR
     rm -f Miniconda3-latest-Linux-x86_64.sh
-
-    # init adds to your shell config file, adding conda"s dir to env variables
-    $CONDA_DIR/bin/conda init bash$PREFIX/lib:
-    source $HOME/.bashrc
-
-    conda config --set auto_activate_base false
-    conda config --add channels conda-forge 
-    conda create -qy -n $USER python=3.9 c-compiler cxx-compiler cmake
 else
     echo "Miniconda is already installed."
 fi
 
+# init adds to your shell config file, adding conda"s dir to env variables
+if ! command -v conda > /dev/null
+then
+    $CONDA_DIR/bin/conda init bash
+    $CONDA_DIR/bin/conda config --set auto_activate_base false
+    $CONDA_DIR/bin/conda config --add channels conda-forge
+    $CONDA_DIR/bin/conda create -y -n $USER python=3.9 c-compiler cxx-compiler
+    popd > /dev/null
+    rm -rf $TEMP_DIR
+    echo "Conda initialized ~/.bashrc. Restart shell and run script again."
+    set +e
+    return 0
+fi
+
 conda activate $USER
-conda --version 
+conda --version
 echo "-------------------------------------------"
 
-# clear
+
 echo ""
 echo "-------------------------------------------"
 if ! command -v ninja > /dev/null
@@ -63,27 +71,6 @@ echo "ninja version: $(ninja --version)"
 echo "-------------------------------------------"
 
 
-# clear
-echo ""
-echo "-------------------------------------------"
-if [ ! -f $PREFIX/include/zlib.h ];
-then
-    echo "Installing zlib..."
-    curl -sLO https://www.zlib.net/zlib-1.2.12.tar.gz
-    tar xf zlib-1.2.12.tar.gz
-    pushd zlib-1.2.12 > /dev/null
-    ./configure --prefix=$PREFIX > /dev/null
-    make -j > /dev/null
-    make install > /dev/null
-    popd > /dev/null
-    rm -rf zlib*
-else
-    echo "zlib is already installed."
-fi
-echo "-------------------------------------------"
-
-
-# clear
 echo ""
 echo "-------------------------------------------"
 if ! command -v stow > /dev/null
@@ -104,25 +91,6 @@ stow --version
 echo "-------------------------------------------"
 
 
-
-# clear
-echo ""
-echo "-------------------------------------------"
-if ! command -v ninja > /dev/null
-then
-    echo "Installing Ninja..."
-    curl -sLO https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip
-    unzip exa-linux-x86_64-v0.10.1.zip > /dev/null
-    mv ninja $PREFIX/bin/ninja
-
-    rm -rf ninja*
-else
-    echo "Ninja is already installed."
-fi
-
-echo "ninja version: $(ninja --version)"
-echo "-------------------------------------------"
-
 # clear
 echo ""
 echo "-------------------------------------------"
@@ -135,7 +103,7 @@ then
     pushd cmake-3.24.1 > /dev/null
 
     cmake . -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_USE_OPENSSL=ON > /dev/null
-    make -j > /dev/null
+    make -j
     make install > /dev/null
 
     popd > /dev/null
@@ -148,26 +116,26 @@ fi
 cmake --version | head -n 1
 echo "-------------------------------------------"
 
-# clear
-# echo ""
-# echo "-------------------------------------------"
-# if [ ! -d $PREFIX/openssl ];
-# then
-#     echo "Installing OpenSSL..."
-#     curl -sLO https://www.openssl.org/source/openssl-1.1.1q.tar.gz
-#     tar xf openssl-1.1.1q.tar.gz
-#     pushd openssl-1.1.1q > /dev/null
-#     ./Configure --prefix=$PREFIX --openssldir=$PREFIX/openssl shared linux-x86_64 > /dev/null
-#     make -j > /dev/null
-#     make install > /dev/null
-#     popd > /dev/null
-#     rm -rf openssl*
-# else
-#     echo "OpenSSL is already installed."
-# fi
+clear
+echo ""
+echo "-------------------------------------------"
+if [ ! -d $PREFIX/openssl ];
+then
+    echo "Installing OpenSSL..."
+    curl -sLO https://www.openssl.org/source/openssl-1.1.1q.tar.gz
+    tar xf openssl-1.1.1q.tar.gz
+    pushd openssl-1.1.1q > /dev/null
+    ./Configure --prefix=$PREFIX --openssldir=$PREFIX/openssl shared linux-x86_64 > /dev/null
+    make -j > /dev/null
+    make install > /dev/null
+    popd > /dev/null
+    rm -rf openssl*
+else
+    echo "OpenSSL is already installed."
+fi
 
-# openssl version
-# echo "-------------------------------------------"
+openssl version
+echo "-------------------------------------------"
 
 # clear
 echo ""
@@ -192,27 +160,27 @@ echo "-------------------------------------------"
 
 
 # clear
-echo ""
-echo "-------------------------------------------"
-if ! git --version | grep 2.37 > /dev/null
-then
-    # conda install -qy zlib
-    echo "Installing git..."
-    curl -sLO https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.37.3.tar.gz
-    tar xf git-2.37.3.tar.gz
-    pushd git-2.37.3 > /dev/null
-    ./configure --prefix=$PREFIX > /dev/null
-    make -j > /dev/null
-    make install > /dev/null
-    popd > /dev/null
-    rm -rf git*
-    # conda remove -qy zlib
-else
-    echo "git is already installed."
-fi
+# echo ""
+# echo "-------------------------------------------"
+# if ! git --version | grep 2.37 > /dev/null
+# then
+#     # conda install -qy zlib
+#     echo "Installing git..."
+#     curl -sLO https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.37.3.tar.gz
+#     tar xf git-2.37.3.tar.gz
+#     pushd git-2.37.3 > /dev/null
+#     ./configure --prefix=$PREFIX > /dev/null
+#     make -j > /dev/null
+#     make install > /dev/null
+#     popd > /dev/null
+#     rm -rf git*
+#     # conda remove -qy zlib
+# else
+#     echo "git is already installed."
+# fi
 
-git --version
-echo "-------------------------------------------"
+# git --version
+# echo "-------------------------------------------"
 
 
 # clear
@@ -237,26 +205,26 @@ echo "-------------------------------------------"
 
 
 
-# clear
-echo ""
-echo "-------------------------------------------"
-if ! command -v zsh > /dev/null
-then
-    echo "Installing zsh..."
-    curl -sLO https://www.zsh.org/pub/zsh-5.9.tar.xz
-    tar xf zsh-5.9.tar.xz
-    pushd zsh-5.9 > /dev/null
-    ./configure --prefix=$PREFIX > /dev/null
-    make -j > /dev/null
-    make install > /dev/null
-    popd > /dev/null
-    rm -rf zsh*
-else
-    echo "zsh is already installed."
-fi
+# # clear
+# echo ""
+# echo "-------------------------------------------"
+# if ! command -v zsh > /dev/null
+# then
+#     echo "Installing zsh..."
+#     curl -sLO https://www.zsh.org/pub/zsh-5.9.tar.xz
+#     tar xf zsh-5.9.tar.xz
+#     pushd zsh-5.9 > /dev/null
+#     ./configure --prefix=$PREFIX > /dev/null
+#     make -j > /dev/null
+#     make install > /dev/null
+#     popd > /dev/null
+#     rm -rf zsh*
+# else
+#     echo "zsh is already installed."
+# fi
 
-zsh --version
-echo "-------------------------------------------"
+# zsh --version
+# echo "-------------------------------------------"
 
 popd > /dev/null
 rm -rf $TEMP_DIR
@@ -264,5 +232,7 @@ rm -rf $TEMP_DIR
 conda deactivate
 
 echo ""
+
+set +e
 
 # TODO: REMIND USER TO ADD EXPORTS TO BASHRC
