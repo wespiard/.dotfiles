@@ -44,8 +44,10 @@ setopt nobeep multios autocd nomatch menucomplete
 # Maps zoxide fzf to Ctrl+F
 bindkey -s '^F' 'zi^M'
 
-bindkey "${terminfo[kcuu1]}" history-substring-search-up
-bindkey "${terminfo[kcud1]}" history-substring-search-down
+bindkey "^N" history-substring-search-up
+bindkey "^P" history-substring-search-down
+# bindkey "${terminfo[kcuu1]}" history-substring-search-up
+# bindkey "${terminfo[kcud1]}" history-substring-search-down
 
 # Only run compinit once per day to improve startup latency
 autoload -Uz compinit
@@ -64,9 +66,10 @@ zstyle ':completion:*' menu select
 ###################################
 # Zoxide
 ###################################
-if [ ! command -v zoxide &> /dev/null ]; then
+if ! command -v "zoxide" >/dev/null 
+then
   echo "Installing Zoxide..."
-  curl -sS https://webinstall.dev/zoxide | bash
+  curl -sS https://webinstall.dev/zoxide | bash >/dev/null 
 fi
 eval "$(zoxide init zsh)" # must be called after `compinit`
 
@@ -85,3 +88,19 @@ fi
 fpath+=($PURE_DIR)
 autoload -U promptinit; promptinit
 prompt pure
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('$HOME/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/.miniconda/etc/profile.d/conda.sh" ]; then
+        . "$HOME/.miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/.miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

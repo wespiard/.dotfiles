@@ -5,9 +5,10 @@ end
 
 local actions = require "telescope.actions"
 
+
 telescope.setup {
   defaults = {
-
+    
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
@@ -15,11 +16,27 @@ telescope.setup {
 
     mappings = {
       i = {
-        ["<Down>"] = actions.cycle_history_next,
-        ["<Up>"] = actions.cycle_history_prev,
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-n>"] = actions.move_selection_next,
+        ["<C-e>"] = actions.move_selection_previous,
       },
     },
   },
+
+  pickers = {
+    find_files = {
+      hidden = true,
+    },
+  },
+
+  extensions = {
+    project = {
+      base_dirs = {},
+      hidden_files = true,
+    }
+  }
 }
+
+-- To get fzf loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function:
+require('telescope').load_extension('fzf')
+require('telescope').load_extension('project')
