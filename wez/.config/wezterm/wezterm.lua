@@ -23,7 +23,7 @@ local config = {
   -- color_scheme = "Afterglow",
   -- color_scheme = "Ashes (base16)",
   -- color_scheme = "Ashes (light) (terminal.sexy)",
-  color_scheme = "dawnfox",
+  -- color_scheme = "dawnfox",
   -- color_scheme = "Blazer",
   -- color_scheme = "Dracula+",
   -- color_scheme = "Espresso",
@@ -33,7 +33,7 @@ local config = {
   -- color_scheme = "Later This Evening",
   -- color_scheme = "lovelace",
   -- color_scheme = "MaterialDarker",
-  -- color_scheme = "nord",
+  color_scheme = "nord",
   -- color_scheme = "OneHalfDark",
   -- color_scheme = "Subliminal",
 

@@ -1,2 +1,2 @@
-vim.cmd[[colorscheme dawnfox]]
--- vim.cmd[[colorscheme tokyonight]]
+-- vim.cmd[[colorscheme dawnfox]]
+vim.cmd[[colorscheme tokyonight]]
