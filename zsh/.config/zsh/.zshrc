@@ -12,19 +12,19 @@ zsh_add_file "zsh-aliases"
 export NVM_COMPLETION=true
 export NVM_LAZY_LOAD=true
 
-if [ -f "$ZDOTDIR/.zsh_plugins.sh" ]; then
-    source $ZDOTDIR/.zsh_plugins.sh
-else
-  if ! command -v "antibody" >/dev/null 
-  then
-    # install antibody
-    echo "Installing Antibody..."
-    curl -sfL git.io/antibody | sh -s - -b $HOME/.local/bin
-  fi
+if ! command -v "antibody" >/dev/null 
+then
+  # install antibody
+  echo "Installing Antibody..."
+  curl -sfL git.io/antibody | sh -s - -b $HOME/.local/bin
+fi
+
+if [ ! -f "$ZDOTDIR/.zsh_plugins.sh" ]; then
   # bundle plugins
   antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh
 fi
 
+source $ZDOTDIR/.zsh_plugins.sh
 
 ###################################
 # ZSH History
@@ -64,9 +64,10 @@ zstyle ':completion:*' menu select
 ###################################
 # Zoxide
 ###################################
-if [ ! command -v zoxide &> /dev/null ]; then
+if ! command -v "zoxide" >/dev/null 
+then
   echo "Installing Zoxide..."
-  curl -sS https://webinstall.dev/zoxide | bash
+  curl -sS https://webinstall.dev/zoxide | bash >/dev/null 
 fi
 eval "$(zoxide init zsh)" # must be called after `compinit`
 
@@ -85,3 +86,19 @@ fi
 fpath+=($PURE_DIR)
 autoload -U promptinit; promptinit
 prompt pure
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('$HOME/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/.miniconda/etc/profile.d/conda.sh" ]; then
+        . "$HOME/.miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/.miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

@@ -1,8 +1,8 @@
 [user]
   name = Wesley Piard
-	email = 1278350+wespiard@users.noreply.github.com
+  email = 1278350+wespiard@users.noreply.github.com
 [core]
-	editor = vim
+	editor = nvim
 [init]
 	defaultBranch = main
 [push]

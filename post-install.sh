@@ -3,7 +3,7 @@
 # Check if script executed as root.
 if [ "$UID" -ne 0 ]; then
   echo 'You must be root to execute this script.'
-  exit 10
+  return
 fi
 
 clear
@@ -21,8 +21,9 @@ case $ID in
     echo "Updating packages in Zypper."
     zypper refresh &> /dev/null
     zypper update -y &> /dev/null
-    zypper install -t pattern devel_basis
-    zypper install -y zsh git stow exa fzf fzf-zsh-completion
+    zypper install -y -t pattern devel_basis 
+    zypper install -y zsh git stow exa fzf fzf-zsh-completion cmake
+    zypper install -y ripgrep fd
     ;;
   ubuntu )
     echo "Detected Ubuntu distribution."
@@ -64,11 +65,8 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit
 rm -rf lazygit.tar.gz
 
-# install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-
 chsh -s $(which zsh)
 
-source $ZDOTDIR/.zshrc
+exit
 
 echo ''
