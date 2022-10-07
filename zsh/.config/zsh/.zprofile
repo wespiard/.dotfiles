@@ -19,3 +19,4 @@ typeset -U path
 path=( $HOME/.local/bin $RUSTUP_HOME $CARGO_HOME/bin $path)
 export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
 export LIBRARY_PATH=$HOME/.local/lib:$LIBRARY_PATH
+
