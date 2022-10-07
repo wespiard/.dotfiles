@@ -12,19 +12,19 @@ zsh_add_file "zsh-aliases"
 export NVM_COMPLETION=true
 export NVM_LAZY_LOAD=true
 
-if [ -f "$ZDOTDIR/.zsh_plugins.sh" ]; then
-    source $ZDOTDIR/.zsh_plugins.sh
-else
-  if ! command -v "antibody" >/dev/null 
-  then
-    # install antibody
-    echo "Installing Antibody..."
-    curl -sfL git.io/antibody | sh -s - -b $HOME/.local/bin
-  fi
+if ! command -v "antibody" >/dev/null 
+then
+  # install antibody
+  echo "Installing Antibody..."
+  curl -sfL git.io/antibody | sh -s - -b $HOME/.local/bin
+fi
+
+if [ ! -f "$ZDOTDIR/.zsh_plugins.sh" ]; then
   # bundle plugins
   antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh
 fi
 
+source $ZDOTDIR/.zsh_plugins.sh
 
 ###################################
 # ZSH History
