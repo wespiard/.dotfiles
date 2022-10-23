@@ -39,7 +39,7 @@ export SAVEHIST=1000
 # ZSH Options
 ###################################
 setopt appendhistory incappendhistory sharehistory histfindnodups
-setopt nobeep multios autocd nomatch menucomplete
+setopt nobeep multios autocd menucomplete
 
 # Maps zoxide fzf to Ctrl+F
 bindkey -s '^F' 'zi^M'
