@@ -43,6 +43,8 @@ local config = {
   tab_bar_at_bottom = true,
   hide_tab_bar_if_only_one_tab = true,
 
+  audible_bell = "Disabled",
+
   -- Leave terminal open if exit with an error.
   exit_behavior = 'CloseOnCleanExit',
   clean_exit_codes = { 130 },
@@ -74,6 +76,11 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   table.insert(launch_menu, {
     label = 'PowerShell',
     args = { 'powershell.exe', '-NoLogo' },
+  })
+
+  table.insert(launch_menu, {
+    label = 'shrec2',
+    args = { 'wsl', 'ssh', 'shrec2' },
   })
 
   table.insert(launch_menu, {
