@@ -21,7 +21,7 @@ case $ID in
     echo "Updating packages in Zypper."
     zypper refresh &> /dev/null
     zypper update -y &> /dev/null
-    zypper install -y -t pattern devel_basis 
+    zypper install -y gcc gcc-c++
     zypper install -y zsh git stow exa fzf fzf-zsh-completion cmake
     zypper install -y ripgrep fd
     ;;
@@ -59,10 +59,13 @@ rm -rf $HOME/.gitconfig $HOME/.tmux.conf $HOME/.config/zsh $HOME/.zshrc
 echo "Stowing dotfiles to $HOME directory."
 stow zsh git tmux nvim wez
 
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y -q
+
 # install lazygit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[0-35.]+')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-sudo tar xf lazygit.tar.gz -C /usr/local/bin lazygit
+tar xf lazygit.tar.gz -C $HOME/.local/bin lazygit
 rm -rf lazygit.tar.gz
 
 chsh -s $(which zsh)
@@ -70,3 +73,4 @@ chsh -s $(which zsh)
 exit
 
 echo ''
+
