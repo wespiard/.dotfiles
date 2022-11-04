@@ -54,7 +54,6 @@ return packer.startup(function(use)
   use 'folke/tokyonight.nvim'
   use 'edeneast/nightfox.nvim'
 
-   
   -- Interface
   use 'famiu/bufdelete.nvim'
   use 'akinsho/bufferline.nvim'
