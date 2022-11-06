@@ -69,28 +69,28 @@ local launch_menu = {}
 -------------------------
 -- CHECK OPERATING SYSTEM
 -------------------------
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-  -- We are running on Windows
-  config.default_prog = {"wsl", "~"}
+-- if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+--   -- We are running on Windows
+--   config.default_prog = {"wsl", "~"}
 
-  table.insert(launch_menu, {
-    label = 'PowerShell',
-    args = { 'powershell.exe', '-NoLogo' },
-  })
+--   table.insert(launch_menu, {
+--     label = 'PowerShell',
+--     args = { 'powershell.exe', '-NoLogo' },
+--   })
 
-  table.insert(launch_menu, {
-    label = 'shrec2',
-    args = { 'wsl', 'ssh', 'shrec2' },
-  })
+--   table.insert(launch_menu, {
+--     label = 'shrec2',
+--     args = { 'wsl', 'ssh', 'shrec2' },
+--   })
 
-  table.insert(launch_menu, {
-    label = 'DevCloud',
-    args = { 'wsl', 'ssh', 'devcloud' },
-  })
+--   table.insert(launch_menu, {
+--     label = 'DevCloud',
+--     args = { 'wsl', 'ssh', 'devcloud' },
+--   })
 
-else
-  config.default_prog = {}
-end
+-- else
+--   config.default_prog = {}
+-- end
 
 config.launch_menu = launch_menu
 
