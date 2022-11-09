@@ -8,6 +8,7 @@ local config = {
 
   font_size = 13.0;
   font = wezterm.font_with_fallback {
+    { family = 'Comic Code Ligatures'},
     { family = 'Fira Code',
       harfbuzz_features = {
         "zero", "cv04", "cv02", "ss05", "ss04", "ss03",
