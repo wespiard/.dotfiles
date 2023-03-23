@@ -9,7 +9,7 @@ To copy these configurations to a new system, one needs __git__ and __stow__ to 
 1. Clone this repository into home directory.
 
 ```
-git clone https://gitlab.com/wespiard/dotfiles.git ~/.dotfiles
+git clone https://github.com/wespiard/.dotfiles.git ~/.dotfiles
 ```
 
 2. Enter repository directory and call stow.
