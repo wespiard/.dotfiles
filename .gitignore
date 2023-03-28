@@ -3,3 +3,4 @@
 **/plugin*/
 .zsh_plugins.sh
 node_modules/
+envman/
