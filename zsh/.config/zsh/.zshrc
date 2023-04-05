@@ -44,10 +44,12 @@ setopt nobeep multios menucomplete
 # Maps zoxide fzf to Ctrl+F
 bindkey -s '^F' 'zi^M'
 
-bindkey "^N" history-substring-search-up
-bindkey "^P" history-substring-search-down
-# bindkey "${terminfo[kcuu1]}" history-substring-search-up
-# bindkey "${terminfo[kcud1]}" history-substring-search-down
+#bindkey "^N" history-substring-search-up
+#bindkey "^P" history-substring-search-down
+#bindkey "${terminfo[kcuu1]}" history-substring-search-up
+#bindkey "${terminfo[kcud1]}" history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # Only run compinit once per day to improve startup latency
 autoload -Uz compinit
