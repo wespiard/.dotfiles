@@ -6,17 +6,8 @@ To copy these configurations to a new system, one needs __git__ and __stow__ to 
 
 ## Installation
 
-1. Clone this repository into home directory.
+1. Run the setup script, which clones the repo and configures the environment.
 
 ```
-git clone https://github.com/wespiard/.dotfiles.git ~/.dotfiles
+curl -s https://raw.githubusercontent.com/wespiard/.dotfiles/main/new_env.sh | bash
 ```
-
-2. Enter repository directory and call stow.
-
-```
-cd ~/.dotfiles
-stow */
-```
-
-Stow creates symlinks in the parent directory of where it is called, which in this case would be the $HOME directory.
