@@ -1,12 +1,7 @@
-#!/bin/sh
 
-
-# ZSH
-# alias j='z'
-# alias f='zi'
 alias nvrc='nvim ~/.config/nvim/'
-alias nvzs='nvim $ZDOTDIR/.zshrc' 
-alias zs='source $ZDOTDIR/.zshrc'
+alias nvzs='nvim $HOME/.zshrc' 
+alias zs='source $HOME/.zshrc'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
