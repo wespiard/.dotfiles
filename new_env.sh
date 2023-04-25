@@ -66,6 +66,7 @@ echo "-------------------------------------------"
 popd
 
 pushd $HOME/.dotfiles
+rm -rf $HOME/.gitconfig $HOME/.zshrc
 stow git zsh tmux
 popd
 
