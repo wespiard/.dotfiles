@@ -1,7 +1,7 @@
 ZAP_DIR="$HOME/.local/share/zap"
 
 # If Zap directory doesn't exist, install it with git.
-[[ ! -d "$ZAP_DIR" ]] && git clone --depth 1 -b release-v1 https://github.com/zap > /dev/null
+[[ ! -d "$ZAP_DIR" ]] && git clone --depth 1 -b release-v1 https://github.com/zap-zsh/zap $ZAP_DIR > /dev/null
 
 
 

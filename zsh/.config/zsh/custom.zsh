@@ -47,5 +47,10 @@ fi
 eval "$(zoxide init zsh)" # must be called after `compinit`
 
 # Initialize Starship prompt
+if ! command -v "starship" > /dev/null
+then
+  echo "Installing Starship Prompt..."
+  curl -sS https://starship.rs/install.sh | sh -s -- -y -b $HOME/.local/bin
+fi
 eval "$(starship init zsh)"
 
