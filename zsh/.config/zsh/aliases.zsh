@@ -3,6 +3,8 @@ alias nvrc='nvim ~/.config/nvim/'
 alias nvzs='nvim $HOME/.zshrc' 
 alias zs='source $HOME/.zshrc'
 
+alias md='mkdir -p'
+
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
