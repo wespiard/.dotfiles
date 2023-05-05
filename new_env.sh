@@ -4,7 +4,7 @@ TEMP_DIR=$HOME/tmp
 mkdir -p $TEMP_DIR $PREFIX/bin
 
 echo "Cloning `.dotfiles` repository."
-git clone https://github.com/wespiard/.dotfiles.git $HOME/.dotfiles
+git clone git@github.com:wespiard/.dotfiles.git $HOME/.dotfiles
 
 clear
 
