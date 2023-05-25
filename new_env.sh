@@ -63,11 +63,28 @@ else
     echo "fzf is already installed."
 fi
 echo "-------------------------------------------"
+
+# INSTALL LAZYGIT
+echo ""
+echo "-------------------------------------------"
+if ! command -v lazygit > /dev/null
+then
+    echo "Installing lazygit..."
+    echo "-------------------------------------------"
+    wget https://github.com/jesseduffield/lazygit/releases/download/v0.38.2/lazygit_0.38.2_Linux_x86_64.tar.gz
+    tar xf lazygit*
+    mv lazygit $HOME/.local/bin
+    rm -rf lazygit*
+else
+    echo "fzf is already installed."
+fi
+echo "-------------------------------------------"
 popd
 
+
 pushd $HOME/.dotfiles
-rm -rf $HOME/.gitconfig $HOME/.zshrc
-stow git zsh tmux
+rm -rf $HOME/.gitconfig $HOME/.zshrc $HOME/.config/lazygit $HOME/.tmux.conf
+stow git zsh tmux lazygit
 popd
 
 # echo "-------------------------------------------"
