@@ -41,7 +41,7 @@ then
     echo "-------------------------------------------"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y -q
     source "$CARGO_DIR/env"
-    cargo install exa fd-find ripgrep
+    cargo install exa fd-find ripgrep bat du-dust
 echo "-------------------------------------------"
 else
     echo "Rust is already installed."
