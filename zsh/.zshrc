@@ -7,6 +7,7 @@ ZAP_DIR="$HOME/.local/share/zap"
 
 # Created by Zap installer
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+plug "lukechilds/zsh-nvm"
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-history-substring-search"
