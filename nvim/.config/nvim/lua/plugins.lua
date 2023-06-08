@@ -11,14 +11,6 @@ end
 
 local packer_bootstrap = ensure_packer()
 
--- -- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd([[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
---   augroup end
--- ]])
-
 -- Automatically source and re-compile packer whenever you save this init.lua
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -43,52 +35,24 @@ packer.init {
   -- log = { level = 'debug' },
 }
 
--- Install your plugins here
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'  -- Have packer manage itself
-  use 'nvim-lua/plenary.nvim'   -- Useful lua functions used by lots of plugins
 
-  use "kyazdani42/nvim-web-devicons"
+  use 'nvim-treesitter/nvim-treesitter'
 
-  -- Colorschemes
-  use 'folke/tokyonight.nvim'
-  use 'edeneast/nightfox.nvim'
-
-  -- Interface
-  use 'famiu/bufdelete.nvim'
-  use 'akinsho/bufferline.nvim'
-  use 'nvim-lualine/lualine.nvim'
-  use 'lukas-reineke/indent-blankline.nvim'
-  use 'lewis6991/gitsigns.nvim'
-
-  -- Comments
-  use 'numtostr/comment.nvim'
-
-
-  -- Telescope
-  use { 'nvim-telescope/telescope.nvim', tag = '*', requires = {'nvim-lua/plenary.nvim'}}
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'nvim-telescope/telescope-project.nvim'
-
-  -- File Explorer
-  use 'kyazdani42/nvim-tree.lua'
-
-  -- Treesitter
-  use { 'nvim-treesitter/nvim-treesitter',
-   run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-   requires = {'nvim-treesitter/nvim-treesitter-textobjects'}
+  use {
+    "williamboman/mason.nvim",
+    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
   }
-
-  -- LSP
-  use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use 'neovim/nvim-lspconfig'
+
+  -- Color Schemes
+  use 'rebelot/kanagawa.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
-    require("packer").sync()
+    require('packer').sync()
   end
-
 end)
-

@@ -5,7 +5,7 @@ local status_ok2, lspconfig = pcall(require, "lspconfig")
 if not status_ok2 then return end
 
 masonconfig.setup = {
-  ensure_installed = { "sumneko_lua", "pyright" },
+  ensure_installed = { "sumneko_lua", "pyright", "verible" },
   automatic_installation = true
 }
 
@@ -34,9 +34,8 @@ masonconfig.setup_handlers {
       }
   end,
 
-  ["yamlls"] = function()
-    lspconfig.yamlls.setup{
-      filetypes = {"yaml", "core"},
-    }
+  ["verible"] = function()
+    lspconfig.verible.setup{
+      }
   end,
 }
