@@ -1,7 +1,4 @@
-require 'plugins'
-require 'options'
-require 'colorscheme'
-require 'treesitter'
-
-
-require 'lsp'
+require 'config.options'
+require 'config.keymaps'
+require 'config.Lazy'
+--require 'autocommands'
