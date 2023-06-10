@@ -13,7 +13,26 @@ return {
           require("mason").setup()
         end,
       },
-      "williamboman/mason-lspconfig.nvim",
+      {
+        "williamboman/mason-lspconfig.nvim",
+        event = "BufReadPre",
+        config = function()
+          require("mason-lspconfig").setup({
+            ensure_installed = {
+              "bashls",
+              "jsonls",
+              "tsserver",
+              "julials",
+              "lua_ls",
+              "pyright",
+              "rust_analyzer",
+              "verible",
+              "taplo"
+            },
+            automatic_installation = true,
+          })
+        end,
+      },
     },
 
     config = function()

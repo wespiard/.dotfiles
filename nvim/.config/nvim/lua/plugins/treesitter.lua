@@ -6,15 +6,15 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       auto_install = true,
-      ensure_installed = { 
-        "bash", 
-        "c", 
-        "cpp", 
-        "html", 
-        "javascript", 
-        "json", 
+      ensure_installed = {
+        "bash",
+        "c",
+        "cpp",
+        "html",
+        "javascript",
+        "json",
         "julia",
-        "lua", 
+        "lua",
         "make",
         "python",
         "rust",
@@ -24,7 +24,7 @@ return {
       highlight = { enable = true, },
       indent = { enable = true, },
     },
-    config = function (_, opts)
+    config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
