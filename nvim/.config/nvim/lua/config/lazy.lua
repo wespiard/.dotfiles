@@ -13,8 +13,23 @@ vim.opt.rtp:prepend(lazypath)
 
 -- load lazy
 require("lazy").setup("plugins", {
-  defaults = {lazy = true},
-  ui = { wrap = "true" },
+  defaults = { lazy = true },
   change_detection = { enabled = true },
   debug = false,
+  ui = {
+    wrap = true,
+    icons = {
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🗝",
+      plugin = "🔌",
+      runtime = "💻",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+    },
+  },
 })
