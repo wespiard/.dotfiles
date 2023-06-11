@@ -107,21 +107,27 @@ function M.config()
     },
 
     formatting = {
+      fields = { "kind", "abbr", "menu" },
       format = function(entry, vim_item)
+        vim_item.kind = kind_icons[vim_item.kind]
         vim_item.menu = ({
-          luasnip = "[LuaSnip]",
-          nvim_lsp = "[LSP]",
-          buffer = "[Buffer]",
+          nvim_lsp = "",
+          luasnip = "",
+          buffer = "",
+          path = "",
         })[entry.source.name]
         return vim_item
-      end
+      end,
     },
     sources = cmp.config.sources({
       { name = 'luasnip' },
       { name = 'nvim_lsp' },
     }, {
       { name = 'buffer', keyword_length = 5 },
-    })
+    }),
+    experimental = {
+      ghost_text = true,
+    },
   })
 end
 
