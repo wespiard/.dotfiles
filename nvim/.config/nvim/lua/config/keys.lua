@@ -66,3 +66,6 @@ keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(v
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+
+-- Source current file
+keymap("n", "<leader>ss", ":source $HOME/.config/nvim/init.lua<CR>", opts)

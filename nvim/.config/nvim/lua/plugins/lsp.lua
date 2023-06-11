@@ -60,9 +60,13 @@ return {
         lsp_map("gD", vim.lsp.buf.declaration, bufnr, "Goto Declaration")
       end
 
+      -- Set up lspconfig.
+      -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       -- Lua
       require("lspconfig")["lua_ls"].setup({
         on_attach = on_attach,
+        -- capabilities = capabilities,
         settings = {
           Lua = {
             diagnostics = {
