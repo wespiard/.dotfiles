@@ -1,5 +1,4 @@
 return {
-  "nvim-telescope/telescope-file-browser.nvim",
   {
     'nvim-telescope/telescope.nvim',
     config = function()
@@ -30,5 +29,6 @@ return {
 
     lazy = false,
     dependencies = { 'nvim-lua/plenary.nvim' }
-  }
+  },
+  "nvim-telescope/telescope-file-browser.nvim",
 }
