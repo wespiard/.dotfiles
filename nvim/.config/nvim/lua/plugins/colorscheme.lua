@@ -5,7 +5,7 @@ return {
     priority = 1000,
     name = "catppuccin",
     config = function()
-      vim.cmd([[colorscheme catppuccin-macchiato]])
+      vim.cmd([[colorscheme catppuccin]])
     end,
     opts = {
       integrations = {
