@@ -61,12 +61,17 @@ return {
       end
 
       -- Set up lspconfig.
-      -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+      -- SystemVerilog
+      require("lspconfig")["verible"].setup({
+        on_attach = on_attach,
+      })
 
       -- Lua
       require("lspconfig")["lua_ls"].setup({
         on_attach = on_attach,
-        -- capabilities = capabilities,
+        capabilities = capabilities,
         settings = {
           Lua = {
             diagnostics = {
