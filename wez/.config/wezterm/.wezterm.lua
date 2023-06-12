@@ -2,13 +2,16 @@ local wezterm = require 'wezterm'
 
 local config = {
 
+  default_domain = 'WSL:Arch',
+
   -------------------------
   -- FONTS
   -------------------------
-
-  font_size = 13.0;
+  font_size = 12.0;
   font = wezterm.font_with_fallback {
-    { family = 'Comic Code Ligatures'},
+    { family = 'ComicCode Nerd Font',
+      harfbuzz_features = {"ss04"}
+  },
     { family = 'Fira Code',
       harfbuzz_features = {
         "zero", "cv04", "cv02", "ss05", "ss04", "ss03",
@@ -49,50 +52,16 @@ local config = {
   -- Leave terminal open if exit with an error.
   exit_behavior = 'CloseOnCleanExit',
   clean_exit_codes = { 130 },
-
   window_close_confirmation = 'NeverPrompt',
-
   window_decorations = 'RESIZE',
 
   max_fps = 144;
   show_update_window = true,
-
-  add_wsl_distributions_to_launch_menu = false,
 
   keys = {
     { key = 'w', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentPane { confirm = false } },
     { key = 't', mods = 'ALT', action = wezterm.action.ShowLauncher },
   }
 }
-
-local launch_menu = {}
-
--------------------------
--- CHECK OPERATING SYSTEM
--------------------------
--- if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
---   -- We are running on Windows
---   config.default_prog = {"wsl", "~"}
-
---   table.insert(launch_menu, {
---     label = 'PowerShell',
---     args = { 'powershell.exe', '-NoLogo' },
---   })
-
---   table.insert(launch_menu, {
---     label = 'shrec2',
---     args = { 'wsl', 'ssh', 'shrec2' },
---   })
-
---   table.insert(launch_menu, {
---     label = 'DevCloud',
---     args = { 'wsl', 'ssh', 'devcloud' },
---   })
-
--- else
---   config.default_prog = {}
--- end
-
-config.launch_menu = launch_menu
 
 return config
