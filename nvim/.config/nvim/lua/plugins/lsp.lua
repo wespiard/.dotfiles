@@ -68,6 +68,16 @@ return {
         on_attach = on_attach,
       })
 
+      -- Python
+      require("lspconfig")["pyright"].setup({
+        on_attach = on_attach,
+      })
+
+      -- Clangd
+      require("lspconfig")["clangd"].setup({
+        on_attach = on_attach,
+      })
+
       -- Lua
       require("lspconfig")["lua_ls"].setup({
         on_attach = on_attach,
