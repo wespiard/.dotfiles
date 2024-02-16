@@ -20,8 +20,8 @@ alias ls='ls --color=auto'
 #alias l='ls -oFA --color=auto --group-directories-first'
 alias l='exa -la --group-directories-first --icons'
 alias ll='exa -l --group-directories-first --icons'
-alias lt='exa -l --group-directories-first --icons --tree --level'
-alias lta='exa -la --group-directories-first --icons --ignore-glob=.git --tree --level'
+alias lt='exa -l --group-directories-first --icons --git-ignore --tree --level'
+alias lta='exa -la --group-directories-first --icons --git-ignore --ignore-glob=.git --tree --level'
 
 # easier to read disk
 alias df='df -h'     # human-readable sizes

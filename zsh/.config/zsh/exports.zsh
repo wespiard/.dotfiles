@@ -15,3 +15,5 @@ mkdir -p $HOME/.cache/zsh
 export HISTFILE=$HOME/.cache/zsh/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=1000
+
+export PATH="$HOME/neovim/bin:$PATH"
