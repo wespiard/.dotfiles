@@ -55,7 +55,7 @@ if ! command -v fzf > /dev/null
 then
     echo "Installing fzf..."
     echo "-------------------------------------------"
-    wget https://github.com/junegunn/fzf/releases/download/0.38.0/fzf-0.38.0-linux_amd64.tar.gz
+    wget https://github.com/junegunn/fzf/releases/download/0.46.1/fzf-0.46.1-linux_amd64.tar.gz
     tar xf fzf*
     mv fzf $HOME/.local/bin
     rm -rf fzf*
