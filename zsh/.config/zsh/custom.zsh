@@ -9,6 +9,7 @@
 ###################################
 setopt appendhistory incappendhistory sharehistory histfindnodups
 setopt nobeep multios menucomplete
+unsetopt autocd
 
 # Maps zoxide fzf to Ctrl+F
 bindkey -s '^F' 'zi^M'
