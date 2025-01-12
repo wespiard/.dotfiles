@@ -18,10 +18,14 @@ alias rm='rm -i'
 # ls shortcuts
 alias ls='ls --color=auto'
 #alias l='ls -oFA --color=auto --group-directories-first'
-alias l='exa -la --group-directories-first --icons'
-alias ll='exa -l --group-directories-first --icons'
-alias lt='exa -l --group-directories-first --icons --git-ignore --tree --level'
-alias lta='exa -la --group-directories-first --icons --git-ignore --ignore-glob=.git --tree --level'
+alias l='eza -l --group-directories-first --icons'
+alias la='eza -la --group-directories-first --icons'
+alias lt='eza -l --group-directories-first --icons --git-ignore --tree --level'
+alias lta='eza -la --group-directories-first --icons --git-ignore --ignore-glob=.git --tree --level'
+alias t='eza --group-directories-first --icons --git-ignore --tree'
+alias tt='eza --group-directories-first --icons --git-ignore --tree --level'
+alias ta='eza -a --group-directories-first --icons --git-ignore --ignore-glob=.git --tree'
+alias tta='eza -a --group-directories-first --icons --git-ignore --ignore-glob=.git --tree --level'
 
 # easier to read disk
 alias df='df -h'     # human-readable sizes
