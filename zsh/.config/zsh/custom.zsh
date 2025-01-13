@@ -9,7 +9,7 @@
 ###################################
 setopt appendhistory incappendhistory sharehistory histfindnodups
 setopt nobeep multios menucomplete
-unsetopt autocd
+setopt autocd
 
 # Maps zoxide fzf to Ctrl+F
 bindkey -s '^F' 'zi^M'
@@ -26,6 +26,7 @@ bindkey '^[[B' history-substring-search-down
 
 # Only run compinit once per day to improve startup latency
 autoload -Uz compinit
+# compinit
 for dump in ~/.zcompdump(N.mh+24); do
   compinit
 done
@@ -37,9 +38,11 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # Use arrow keys to navigate completion menu
 zstyle ':completion:*' menu select
 
+
 ###################################
 # Zoxide
 ###################################
+unalias zi
 if ! command -v "zoxide" >/dev/null 
 then
   echo "Installing Zoxide..."
@@ -48,10 +51,10 @@ fi
 eval "$(zoxide init zsh)" # must be called after `compinit`
 
 # Initialize Starship prompt
-if ! command -v "starship" > /dev/null
-then
-  echo "Installing Starship Prompt..."
-  curl -sS https://starship.rs/install.sh | sh -s -- -y -b $HOME/.local/bin
-fi
-eval "$(starship init zsh)"
+# if ! command -v "starship" > /dev/null
+# then
+#   echo "Installing Starship Prompt..."
+#   curl -sS https://starship.rs/install.sh | sh -s -- -y -b $HOME/.local/bin
+# fi
+# eval "$(starship init zsh)"
 
