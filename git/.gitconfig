@@ -2,7 +2,7 @@
   name = Wesley Piard
 	email = 1278350+wespiard@users.noreply.github.com
 [core]
-	editor = nvim
+	editor = vim
 [init]
 	defaultBranch = main
 [push]
