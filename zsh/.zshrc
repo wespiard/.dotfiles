@@ -46,3 +46,4 @@ zinit light-mode for \
 
 
 source $HOME/.config/zsh/custom.zsh
+export QSYS_ROOTDIR="/home/wespiard/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/25.1/quartus/sopc_builder/bin"

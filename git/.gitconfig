@@ -1,5 +1,5 @@
 [user]
-  name = Wesley Piard
+  	name = Wesley Piard
 	email = 1278350+wespiard@users.noreply.github.com
 [core]
 	editor = vim
@@ -15,3 +15,6 @@
 	helper = !/usr/bin/gh auth git-credential
 [safe]
 	directory = /home/wespiard/tmp/mnt/fpga-study
+
+[includeIf "gitdir:~/git/misc72/"]
+    path = ~/.gitconfig-misc72

@@ -6,3 +6,4 @@ source /usr/share/cachyos-fish-config/cachyos-config.fish
 #    # smth smth
 #end
 zoxide init fish | source
+fzf --fish | source
